@@ -2,7 +2,7 @@
 dataset/
 *.tsv
 !reports/**/*.tsv
-!tests/fixtures/*.tsv
+!tests/fixtures/**/*.tsv
 # Pipeline outputs
 output/
 # macOS metadata
@@ -15,3 +15,7 @@ __pycache__/
 .ipynb_checkpoints/
 *.lgb
 *.pkl
+
+# Large generated data-quality tables
+reports/data_quality/unreferenced_source*_records.tsv
+.pytest_cache/
