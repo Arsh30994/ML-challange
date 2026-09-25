@@ -1,0 +1,94 @@
+{
+  "config": {
+    "seed": 42,
+    "val_frac": 0.2,
+    "data_dir": "/workspace/amlc/dataset/dataset",
+    "s1_strata": [
+      "country",
+      "is_singleton"
+    ],
+    "unreferenced_strata": [
+      "source",
+      "country"
+    ],
+    "files": [
+      "s1_split.parquet",
+      "s1_split.tsv",
+      "s2_split.parquet",
+      "s2_split.tsv",
+      "s3_split.parquet",
+      "s3_split.tsv"
+    ]
+  },
+  "leakage_checks": {
+    "ids_without_side": 0,
+    "ids_on_both_sides": 0,
+    "duplicate_ids": 0,
+    "matched_ids_on_other_side_than_their_s1": 0,
+    "all_passed": true
+  },
+  "train": {
+    "s1": 1765458,
+    "s1_singletons": 98598,
+    "s1_non_singletons": 1666860,
+    "s1_country_mix": {
+      "India": 706551,
+      "US": 1058907
+    },
+    "s2_total": 4027732,
+    "s2_matched": 2954935,
+    "s2_unreferenced": 1072797,
+    "s2_country_mix": {
+      "India": 1614550,
+      "US": 2413182
+    },
+    "s3_total": 4228924,
+    "s3_matched": 3156239,
+    "s3_unreferenced": 1072685,
+    "s3_country_mix": {
+      "India": 1692451,
+      "US": 2536473
+    }
+  },
+  "val": {
+    "s1": 441363,
+    "s1_singletons": 24649,
+    "s1_non_singletons": 416714,
+    "s1_country_mix": {
+      "India": 176637,
+      "US": 264726
+    },
+    "s2_total": 1006884,
+    "s2_matched": 738684,
+    "s2_unreferenced": 268200,
+    "s2_country_mix": {
+      "India": 403249,
+      "US": 603635
+    },
+    "s3_total": 1056679,
+    "s3_matched": 788507,
+    "s3_unreferenced": 268172,
+    "s3_country_mix": {
+      "India": 423096,
+      "US": 633583
+    }
+  },
+  "val_fraction": {
+    "s1": 0.2,
+    "s1_singletons": 0.2,
+    "s1_non_singletons": 0.2,
+    "s2_total": 0.19999,
+    "s2_matched": 0.19999,
+    "s2_unreferenced": 0.2,
+    "s3_total": 0.19992,
+    "s3_matched": 0.19989,
+    "s3_unreferenced": 0.2
+  },
+  "val_singleton_rate": 0.05585,
+  "train_singleton_rate": 0.05585,
+  "runtime_s": {
+    "load": 23.7,
+    "total": 38.4
+  },
+  "peak_rss_gb": 4.09
+}
