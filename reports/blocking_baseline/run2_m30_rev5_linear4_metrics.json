@@ -1,0 +1,1527 @@
+{
+  "config": {
+    "m_per_method": 30,
+    "k_max": 30,
+    "stop_df_frac": 0.01,
+    "char_df_cap": 0.01,
+    "addr_df_cap": 0.01,
+    "word_df_cap": 0.05,
+    "threshold": 0.05,
+    "chunk_rows": 20000,
+    "n_threads": 6,
+    "weights": {
+      "cos_word": -1.1758288145065308,
+      "cos_char": 4.311912536621094,
+      "cos_sk": 5.23921012878418,
+      "cos_addr": 13.115160942077637
+    },
+    "methods": [
+      "word",
+      "char",
+      "sk",
+      "addr"
+    ],
+    "reverse_top": 5
+  },
+  "norm_prefix": "/workspace/amlc/work/norm_val",
+  "gt": "/workspace/amlc/dataset/dataset/train/train_ground_truth.tsv",
+  "n_s1": 441363,
+  "n_s2": 1006884,
+  "n_s3": 1056679,
+  "k_selection_rule": "smallest k with pair recall within 0.5 pt of recall at k_max",
+  "recommended_k_by_rule": 15,
+  "recall_at_k": {
+    "5": {
+      "pair_recall": 0.96125,
+      "true_pairs": 1527191,
+      "pairs_kept": 1468013,
+      "pair_recall_by_source": {
+        "S2": 0.9625,
+        "S3": 0.96008
+      },
+      "entity_all_matches_kept": 0.88106,
+      "entity_at_least_one_kept": 0.99653,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "US": {
+          "pair_recall": 0.97479,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.9148,
+          "entity_any_kept": 0.99855
+        },
+        "India": {
+          "pair_recall": 0.94099,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.83048,
+          "entity_any_kept": 0.99349
+        }
+      },
+      "by_script": {
+        "Kannada": {
+          "pair_recall": 0.84336,
+          "true_pairs": 8759
+        },
+        "Devanagari": {
+          "pair_recall": 0.87711,
+          "true_pairs": 62430
+        },
+        "Oriya": {
+          "pair_recall": 0.93182,
+          "true_pairs": 1716
+        },
+        "Tamil": {
+          "pair_recall": 0.83285,
+          "true_pairs": 7963
+        },
+        "Telugu": {
+          "pair_recall": 0.90225,
+          "true_pairs": 8972
+        },
+        "Bengali": {
+          "pair_recall": 0.88047,
+          "true_pairs": 7011
+        },
+        "Latin": {
+          "pair_recall": 0.96767,
+          "true_pairs": 1417165
+        },
+        "Malayalam": {
+          "pair_recall": 0.9384,
+          "true_pairs": 4399
+        },
+        "Gujarati": {
+          "pair_recall": 0.88918,
+          "true_pairs": 7147
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.94352,
+          "true_pairs": 1629
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 10.0,
+        "p50": 10.0,
+        "p95": 10.0,
+        "p99": 10.0,
+        "max": 10
+      },
+      "candidates_per_s1_S2": {
+        "mean": 5.0,
+        "p50": 5.0,
+        "p95": 5.0,
+        "p99": 5.0,
+        "max": 5
+      },
+      "candidates_per_s1_S3": {
+        "mean": 5.0,
+        "p50": 5.0,
+        "p95": 5.0,
+        "p99": 5.0,
+        "max": 5
+      },
+      "candidates_total": 4413630,
+      "candidates_per_s1_by_country": {
+        "US": 10.0,
+        "India": 10.0
+      }
+    },
+    "10": {
+      "pair_recall": 0.97018,
+      "true_pairs": 1527191,
+      "pairs_kept": 1481647,
+      "pair_recall_by_source": {
+        "S2": 0.97135,
+        "S3": 0.96908
+      },
+      "entity_all_matches_kept": 0.91005,
+      "entity_at_least_one_kept": 0.99693,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "India": {
+          "pair_recall": 0.95144,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.86282,
+          "entity_any_kept": 0.99408
+        },
+        "US": {
+          "pair_recall": 0.9827,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.94156,
+          "entity_any_kept": 0.99884
+        }
+      },
+      "by_script": {
+        "Gujarati": {
+          "pair_recall": 0.89478,
+          "true_pairs": 7147
+        },
+        "Oriya": {
+          "pair_recall": 0.93706,
+          "true_pairs": 1716
+        },
+        "Kannada": {
+          "pair_recall": 0.85021,
+          "true_pairs": 8759
+        },
+        "Telugu": {
+          "pair_recall": 0.90693,
+          "true_pairs": 8972
+        },
+        "Bengali": {
+          "pair_recall": 0.88732,
+          "true_pairs": 7011
+        },
+        "Tamil": {
+          "pair_recall": 0.85006,
+          "true_pairs": 7963
+        },
+        "Devanagari": {
+          "pair_recall": 0.88203,
+          "true_pairs": 62430
+        },
+        "Latin": {
+          "pair_recall": 0.9768,
+          "true_pairs": 1417165
+        },
+        "Malayalam": {
+          "pair_recall": 0.94885,
+          "true_pairs": 4399
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.94905,
+          "true_pairs": 1629
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 20.0,
+        "p50": 20.0,
+        "p95": 20.0,
+        "p99": 20.0,
+        "max": 20
+      },
+      "candidates_per_s1_S2": {
+        "mean": 10.0,
+        "p50": 10.0,
+        "p95": 10.0,
+        "p99": 10.0,
+        "max": 10
+      },
+      "candidates_per_s1_S3": {
+        "mean": 10.0,
+        "p50": 10.0,
+        "p95": 10.0,
+        "p99": 10.0,
+        "max": 10
+      },
+      "candidates_total": 8827260,
+      "candidates_per_s1_by_country": {
+        "India": 20.0,
+        "US": 20.0
+      }
+    },
+    "15": {
+      "pair_recall": 0.97333,
+      "true_pairs": 1527191,
+      "pairs_kept": 1486466,
+      "pair_recall_by_source": {
+        "S2": 0.97444,
+        "S3": 0.97229
+      },
+      "entity_all_matches_kept": 0.92021,
+      "entity_at_least_one_kept": 0.99715,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "India": {
+          "pair_recall": 0.95557,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.87554,
+          "entity_any_kept": 0.99441
+        },
+        "US": {
+          "pair_recall": 0.9852,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.95002,
+          "entity_any_kept": 0.99898
+        }
+      },
+      "by_script": {
+        "Gurmukhi": {
+          "pair_recall": 0.95212,
+          "true_pairs": 1629
+        },
+        "Latin": {
+          "pair_recall": 0.98005,
+          "true_pairs": 1417165
+        },
+        "Gujarati": {
+          "pair_recall": 0.8966,
+          "true_pairs": 7147
+        },
+        "Bengali": {
+          "pair_recall": 0.88846,
+          "true_pairs": 7011
+        },
+        "Kannada": {
+          "pair_recall": 0.85192,
+          "true_pairs": 8759
+        },
+        "Devanagari": {
+          "pair_recall": 0.88323,
+          "true_pairs": 62430
+        },
+        "Telugu": {
+          "pair_recall": 0.90838,
+          "true_pairs": 8972
+        },
+        "Oriya": {
+          "pair_recall": 0.93823,
+          "true_pairs": 1716
+        },
+        "Malayalam": {
+          "pair_recall": 0.95363,
+          "true_pairs": 4399
+        },
+        "Tamil": {
+          "pair_recall": 0.85734,
+          "true_pairs": 7963
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 30.0,
+        "p50": 30.0,
+        "p95": 30.0,
+        "p99": 30.0,
+        "max": 30
+      },
+      "candidates_per_s1_S2": {
+        "mean": 15.0,
+        "p50": 15.0,
+        "p95": 15.0,
+        "p99": 15.0,
+        "max": 15
+      },
+      "candidates_per_s1_S3": {
+        "mean": 15.0,
+        "p50": 15.0,
+        "p95": 15.0,
+        "p99": 15.0,
+        "max": 15
+      },
+      "candidates_total": 13240890,
+      "candidates_per_s1_by_country": {
+        "India": 30.0,
+        "US": 30.0
+      }
+    },
+    "20": {
+      "pair_recall": 0.97513,
+      "true_pairs": 1527191,
+      "pairs_kept": 1489213,
+      "pair_recall_by_source": {
+        "S2": 0.97617,
+        "S3": 0.97416
+      },
+      "entity_all_matches_kept": 0.9261,
+      "entity_at_least_one_kept": 0.99727,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "US": {
+          "pair_recall": 0.98667,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.955,
+          "entity_any_kept": 0.99907
+        },
+        "India": {
+          "pair_recall": 0.95786,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.88278,
+          "entity_any_kept": 0.99458
+        }
+      },
+      "by_script": {
+        "Gurmukhi": {
+          "pair_recall": 0.95335,
+          "true_pairs": 1629
+        },
+        "Bengali": {
+          "pair_recall": 0.89017,
+          "true_pairs": 7011
+        },
+        "Kannada": {
+          "pair_recall": 0.85249,
+          "true_pairs": 8759
+        },
+        "Telugu": {
+          "pair_recall": 0.90916,
+          "true_pairs": 8972
+        },
+        "Malayalam": {
+          "pair_recall": 0.95658,
+          "true_pairs": 4399
+        },
+        "Oriya": {
+          "pair_recall": 0.93939,
+          "true_pairs": 1716
+        },
+        "Gujarati": {
+          "pair_recall": 0.89702,
+          "true_pairs": 7147
+        },
+        "Devanagari": {
+          "pair_recall": 0.88381,
+          "true_pairs": 62430
+        },
+        "Latin": {
+          "pair_recall": 0.98191,
+          "true_pairs": 1417165
+        },
+        "Tamil": {
+          "pair_recall": 0.86224,
+          "true_pairs": 7963
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 40.0,
+        "p50": 40.0,
+        "p95": 40.0,
+        "p99": 40.0,
+        "max": 40
+      },
+      "candidates_per_s1_S2": {
+        "mean": 20.0,
+        "p50": 20.0,
+        "p95": 20.0,
+        "p99": 20.0,
+        "max": 20
+      },
+      "candidates_per_s1_S3": {
+        "mean": 20.0,
+        "p50": 20.0,
+        "p95": 20.0,
+        "p99": 20.0,
+        "max": 20
+      },
+      "candidates_total": 17654520,
+      "candidates_per_s1_by_country": {
+        "India": 40.0,
+        "US": 40.0
+      }
+    },
+    "30": {
+      "pair_recall": 0.97728,
+      "true_pairs": 1527191,
+      "pairs_kept": 1492490,
+      "pair_recall_by_source": {
+        "S2": 0.97829,
+        "S3": 0.97633
+      },
+      "entity_all_matches_kept": 0.93318,
+      "entity_at_least_one_kept": 0.99737,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "US": {
+          "pair_recall": 0.98851,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.96124,
+          "entity_any_kept": 0.99913
+        },
+        "India": {
+          "pair_recall": 0.96047,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.89112,
+          "entity_any_kept": 0.99474
+        }
+      },
+      "by_script": {
+        "Bengali": {
+          "pair_recall": 0.89146,
+          "true_pairs": 7011
+        },
+        "Oriya": {
+          "pair_recall": 0.94056,
+          "true_pairs": 1716
+        },
+        "Kannada": {
+          "pair_recall": 0.85295,
+          "true_pairs": 8759
+        },
+        "Gujarati": {
+          "pair_recall": 0.89786,
+          "true_pairs": 7147
+        },
+        "Devanagari": {
+          "pair_recall": 0.88432,
+          "true_pairs": 62430
+        },
+        "Telugu": {
+          "pair_recall": 0.90961,
+          "true_pairs": 8972
+        },
+        "Malayalam": {
+          "pair_recall": 0.95954,
+          "true_pairs": 4399
+        },
+        "Tamil": {
+          "pair_recall": 0.86651,
+          "true_pairs": 7963
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.95396,
+          "true_pairs": 1629
+        },
+        "Latin": {
+          "pair_recall": 0.98414,
+          "true_pairs": 1417165
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 60.0,
+        "p50": 60.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60
+      },
+      "candidates_per_s1_S2": {
+        "mean": 30.0,
+        "p50": 30.0,
+        "p95": 30.0,
+        "p99": 30.0,
+        "max": 30
+      },
+      "candidates_per_s1_S3": {
+        "mean": 30.0,
+        "p50": 30.0,
+        "p95": 30.0,
+        "p99": 30.0,
+        "max": 30
+      },
+      "candidates_total": 26481765,
+      "candidates_per_s1_by_country": {
+        "India": 60.0,
+        "US": 60.0
+      }
+    },
+    "k10_t6.5": {
+      "pair_recall": 0.96904,
+      "true_pairs": 1527191,
+      "pairs_kept": 1479905,
+      "pair_recall_by_source": {
+        "S2": 0.97039,
+        "S3": 0.96777
+      },
+      "entity_all_matches_kept": 0.906,
+      "entity_at_least_one_kept": 0.99682,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "India": {
+          "pair_recall": 0.95073,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.86032,
+          "entity_any_kept": 0.99401
+        },
+        "US": {
+          "pair_recall": 0.98127,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.93647,
+          "entity_any_kept": 0.9987
+        }
+      },
+      "by_script": {
+        "Malayalam": {
+          "pair_recall": 0.94885,
+          "true_pairs": 4399
+        },
+        "Tamil": {
+          "pair_recall": 0.84993,
+          "true_pairs": 7963
+        },
+        "Bengali": {
+          "pair_recall": 0.88718,
+          "true_pairs": 7011
+        },
+        "Kannada": {
+          "pair_recall": 0.85021,
+          "true_pairs": 8759
+        },
+        "Latin": {
+          "pair_recall": 0.97557,
+          "true_pairs": 1417165
+        },
+        "Gujarati": {
+          "pair_recall": 0.89464,
+          "true_pairs": 7147
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.94905,
+          "true_pairs": 1629
+        },
+        "Devanagari": {
+          "pair_recall": 0.88201,
+          "true_pairs": 62430
+        },
+        "Oriya": {
+          "pair_recall": 0.93706,
+          "true_pairs": 1716
+        },
+        "Telugu": {
+          "pair_recall": 0.90693,
+          "true_pairs": 8972
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 15.893,
+        "p50": 20.0,
+        "p95": 20.0,
+        "p99": 20.0,
+        "max": 20
+      },
+      "candidates_per_s1_S2": {
+        "mean": 8.175,
+        "p50": 10.0,
+        "p95": 10.0,
+        "p99": 10.0,
+        "max": 10
+      },
+      "candidates_per_s1_S3": {
+        "mean": 7.718,
+        "p50": 10.0,
+        "p95": 10.0,
+        "p99": 10.0,
+        "max": 10
+      },
+      "candidates_total": 7014372,
+      "candidates_per_s1_by_country": {
+        "US": 14.799,
+        "India": 17.531
+      }
+    },
+    "k15_t6.5": {
+      "pair_recall": 0.97168,
+      "true_pairs": 1527191,
+      "pairs_kept": 1483937,
+      "pair_recall_by_source": {
+        "S2": 0.97299,
+        "S3": 0.97045
+      },
+      "entity_all_matches_kept": 0.91432,
+      "entity_at_least_one_kept": 0.99701,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "India": {
+          "pair_recall": 0.95446,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.87162,
+          "entity_any_kept": 0.9943
+        },
+        "US": {
+          "pair_recall": 0.98318,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.9428,
+          "entity_any_kept": 0.99882
+        }
+      },
+      "by_script": {
+        "Devanagari": {
+          "pair_recall": 0.8832,
+          "true_pairs": 62430
+        },
+        "Gujarati": {
+          "pair_recall": 0.89646,
+          "true_pairs": 7147
+        },
+        "Malayalam": {
+          "pair_recall": 0.9534,
+          "true_pairs": 4399
+        },
+        "Tamil": {
+          "pair_recall": 0.85696,
+          "true_pairs": 7963
+        },
+        "Oriya": {
+          "pair_recall": 0.93823,
+          "true_pairs": 1716
+        },
+        "Kannada": {
+          "pair_recall": 0.85192,
+          "true_pairs": 8759
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.95212,
+          "true_pairs": 1629
+        },
+        "Bengali": {
+          "pair_recall": 0.88832,
+          "true_pairs": 7011
+        },
+        "Latin": {
+          "pair_recall": 0.97827,
+          "true_pairs": 1417165
+        },
+        "Telugu": {
+          "pair_recall": 0.90838,
+          "true_pairs": 8972
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 21.174,
+        "p50": 25.0,
+        "p95": 30.0,
+        "p99": 30.0,
+        "max": 30
+      },
+      "candidates_per_s1_S2": {
+        "mean": 10.923,
+        "p50": 14.0,
+        "p95": 15.0,
+        "p99": 15.0,
+        "max": 15
+      },
+      "candidates_per_s1_S3": {
+        "mean": 10.251,
+        "p50": 13.0,
+        "p95": 15.0,
+        "p99": 15.0,
+        "max": 15
+      },
+      "candidates_total": 9345262,
+      "candidates_per_s1_by_country": {
+        "India": 24.258,
+        "US": 19.116
+      }
+    },
+    "k20_t6.5": {
+      "pair_recall": 0.97304,
+      "true_pairs": 1527191,
+      "pairs_kept": 1486022,
+      "pair_recall_by_source": {
+        "S2": 0.97432,
+        "S3": 0.97185
+      },
+      "entity_all_matches_kept": 0.91867,
+      "entity_at_least_one_kept": 0.99711,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "India": {
+          "pair_recall": 0.95632,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.87734,
+          "entity_any_kept": 0.99444
+        },
+        "US": {
+          "pair_recall": 0.98421,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.94625,
+          "entity_any_kept": 0.9989
+        }
+      },
+      "by_script": {
+        "Telugu": {
+          "pair_recall": 0.90916,
+          "true_pairs": 8972
+        },
+        "Tamil": {
+          "pair_recall": 0.86098,
+          "true_pairs": 7963
+        },
+        "Oriya": {
+          "pair_recall": 0.93939,
+          "true_pairs": 1716
+        },
+        "Bengali": {
+          "pair_recall": 0.89003,
+          "true_pairs": 7011
+        },
+        "Latin": {
+          "pair_recall": 0.97967,
+          "true_pairs": 1417165
+        },
+        "Malayalam": {
+          "pair_recall": 0.95613,
+          "true_pairs": 4399
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.95273,
+          "true_pairs": 1629
+        },
+        "Kannada": {
+          "pair_recall": 0.85249,
+          "true_pairs": 8759
+        },
+        "Gujarati": {
+          "pair_recall": 0.89674,
+          "true_pairs": 7147
+        },
+        "Devanagari": {
+          "pair_recall": 0.88374,
+          "true_pairs": 62430
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 25.466,
+        "p50": 27.0,
+        "p95": 40.0,
+        "p99": 40.0,
+        "max": 40
+      },
+      "candidates_per_s1_S2": {
+        "mean": 13.129,
+        "p50": 14.0,
+        "p95": 20.0,
+        "p99": 20.0,
+        "max": 20
+      },
+      "candidates_per_s1_S3": {
+        "mean": 12.337,
+        "p50": 13.0,
+        "p95": 20.0,
+        "p99": 20.0,
+        "max": 20
+      },
+      "candidates_total": 11239747,
+      "candidates_per_s1_by_country": {
+        "US": 22.558,
+        "India": 29.824
+      }
+    },
+    "k30_t6.5": {
+      "pair_recall": 0.97442,
+      "true_pairs": 1527191,
+      "pairs_kept": 1488126,
+      "pair_recall_by_source": {
+        "S2": 0.9757,
+        "S3": 0.97322
+      },
+      "entity_all_matches_kept": 0.92307,
+      "entity_at_least_one_kept": 0.99718,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "US": {
+          "pair_recall": 0.9853,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.94983,
+          "entity_any_kept": 0.99894
+        },
+        "India": {
+          "pair_recall": 0.95814,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.88296,
+          "entity_any_kept": 0.99456
+        }
+      },
+      "by_script": {
+        "Tamil": {
+          "pair_recall": 0.86425,
+          "true_pairs": 7963
+        },
+        "Kannada": {
+          "pair_recall": 0.85295,
+          "true_pairs": 8759
+        },
+        "Devanagari": {
+          "pair_recall": 0.88421,
+          "true_pairs": 62430
+        },
+        "Latin": {
+          "pair_recall": 0.98109,
+          "true_pairs": 1417165
+        },
+        "Oriya": {
+          "pair_recall": 0.93998,
+          "true_pairs": 1716
+        },
+        "Gujarati": {
+          "pair_recall": 0.89758,
+          "true_pairs": 7147
+        },
+        "Telugu": {
+          "pair_recall": 0.9095,
+          "true_pairs": 8972
+        },
+        "Bengali": {
+          "pair_recall": 0.89131,
+          "true_pairs": 7011
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.95335,
+          "true_pairs": 1629
+        },
+        "Malayalam": {
+          "pair_recall": 0.95885,
+          "true_pairs": 4399
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 32.026,
+        "p50": 28.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "max": 60
+      },
+      "candidates_per_s1_S2": {
+        "mean": 16.497,
+        "p50": 14.0,
+        "p95": 30.0,
+        "p99": 30.0,
+        "max": 30
+      },
+      "candidates_per_s1_S3": {
+        "mean": 15.529,
+        "p50": 13.0,
+        "p95": 30.0,
+        "p99": 30.0,
+        "max": 30
+      },
+      "candidates_total": 14135173,
+      "candidates_per_s1_by_country": {
+        "US": 27.907,
+        "India": 38.199
+      }
+    },
+    "k15_t8.8": {
+      "pair_recall": 0.93588,
+      "true_pairs": 1527191,
+      "pairs_kept": 1429265,
+      "pair_recall_by_source": {
+        "S2": 0.93782,
+        "S3": 0.93406
+      },
+      "entity_all_matches_kept": 0.79923,
+      "entity_at_least_one_kept": 0.99423,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "India": {
+          "pair_recall": 0.9224,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.77178,
+          "entity_any_kept": 0.99157
+        },
+        "US": {
+          "pair_recall": 0.94488,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.81755,
+          "entity_any_kept": 0.99601
+        }
+      },
+      "by_script": {
+        "Kannada": {
+          "pair_recall": 0.84485,
+          "true_pairs": 8759
+        },
+        "Devanagari": {
+          "pair_recall": 0.87841,
+          "true_pairs": 62430
+        },
+        "Gujarati": {
+          "pair_recall": 0.88723,
+          "true_pairs": 7147
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.94168,
+          "true_pairs": 1629
+        },
+        "Oriya": {
+          "pair_recall": 0.92832,
+          "true_pairs": 1716
+        },
+        "Telugu": {
+          "pair_recall": 0.90214,
+          "true_pairs": 8972
+        },
+        "Bengali": {
+          "pair_recall": 0.88333,
+          "true_pairs": 7011
+        },
+        "Malayalam": {
+          "pair_recall": 0.93362,
+          "true_pairs": 4399
+        },
+        "Latin": {
+          "pair_recall": 0.9403,
+          "true_pairs": 1417165
+        },
+        "Tamil": {
+          "pair_recall": 0.82846,
+          "true_pairs": 7963
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 6.095,
+        "p50": 5.0,
+        "p95": 16.0,
+        "p99": 30.0,
+        "max": 30
+      },
+      "candidates_per_s1_S2": {
+        "mean": 3.193,
+        "p50": 2.0,
+        "p95": 9.0,
+        "p99": 15.0,
+        "max": 15
+      },
+      "candidates_per_s1_S3": {
+        "mean": 2.902,
+        "p50": 2.0,
+        "p95": 8.0,
+        "p99": 15.0,
+        "max": 15
+      },
+      "candidates_total": 2689984,
+      "candidates_per_s1_by_country": {
+        "India": 7.792,
+        "US": 4.962
+      }
+    },
+    "k20_t8.8": {
+      "pair_recall": 0.93589,
+      "true_pairs": 1527191,
+      "pairs_kept": 1429288,
+      "pair_recall_by_source": {
+        "S2": 0.93783,
+        "S3": 0.93408
+      },
+      "entity_all_matches_kept": 0.79927,
+      "entity_at_least_one_kept": 0.99423,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "US": {
+          "pair_recall": 0.94488,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.81755,
+          "entity_any_kept": 0.99601
+        },
+        "India": {
+          "pair_recall": 0.92244,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.77187,
+          "entity_any_kept": 0.99157
+        }
+      },
+      "by_script": {
+        "Gurmukhi": {
+          "pair_recall": 0.94168,
+          "true_pairs": 1629
+        },
+        "Oriya": {
+          "pair_recall": 0.92832,
+          "true_pairs": 1716
+        },
+        "Malayalam": {
+          "pair_recall": 0.93362,
+          "true_pairs": 4399
+        },
+        "Telugu": {
+          "pair_recall": 0.90214,
+          "true_pairs": 8972
+        },
+        "Bengali": {
+          "pair_recall": 0.88333,
+          "true_pairs": 7011
+        },
+        "Devanagari": {
+          "pair_recall": 0.87846,
+          "true_pairs": 62430
+        },
+        "Gujarati": {
+          "pair_recall": 0.88723,
+          "true_pairs": 7147
+        },
+        "Tamil": {
+          "pair_recall": 0.82846,
+          "true_pairs": 7963
+        },
+        "Kannada": {
+          "pair_recall": 0.84485,
+          "true_pairs": 8759
+        },
+        "Latin": {
+          "pair_recall": 0.94032,
+          "true_pairs": 1417165
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 6.22,
+        "p50": 5.0,
+        "p95": 16.0,
+        "p99": 36.0,
+        "max": 40
+      },
+      "candidates_per_s1_S2": {
+        "mean": 3.264,
+        "p50": 2.0,
+        "p95": 9.0,
+        "p99": 20.0,
+        "max": 20
+      },
+      "candidates_per_s1_S3": {
+        "mean": 2.956,
+        "p50": 2.0,
+        "p95": 8.0,
+        "p99": 18.0,
+        "max": 20
+      },
+      "candidates_total": 2745205,
+      "candidates_per_s1_by_country": {
+        "India": 8.083,
+        "US": 4.977
+      }
+    },
+    "k30_t8.8": {
+      "pair_recall": 0.93591,
+      "true_pairs": 1527191,
+      "pairs_kept": 1429309,
+      "pair_recall_by_source": {
+        "S2": 0.93784,
+        "S3": 0.93409
+      },
+      "entity_all_matches_kept": 0.79931,
+      "entity_at_least_one_kept": 0.99424,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "India": {
+          "pair_recall": 0.92247,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.77196,
+          "entity_any_kept": 0.99158
+        },
+        "US": {
+          "pair_recall": 0.94488,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.81755,
+          "entity_any_kept": 0.99601
+        }
+      },
+      "by_script": {
+        "Devanagari": {
+          "pair_recall": 0.87849,
+          "true_pairs": 62430
+        },
+        "Bengali": {
+          "pair_recall": 0.88347,
+          "true_pairs": 7011
+        },
+        "Kannada": {
+          "pair_recall": 0.84485,
+          "true_pairs": 8759
+        },
+        "Tamil": {
+          "pair_recall": 0.82871,
+          "true_pairs": 7963
+        },
+        "Oriya": {
+          "pair_recall": 0.92832,
+          "true_pairs": 1716
+        },
+        "Latin": {
+          "pair_recall": 0.94033,
+          "true_pairs": 1417165
+        },
+        "Gujarati": {
+          "pair_recall": 0.88723,
+          "true_pairs": 7147
+        },
+        "Telugu": {
+          "pair_recall": 0.90214,
+          "true_pairs": 8972
+        },
+        "Malayalam": {
+          "pair_recall": 0.93362,
+          "true_pairs": 4399
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.94168,
+          "true_pairs": 1629
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 6.353,
+        "p50": 5.0,
+        "p95": 16.0,
+        "p99": 38.0,
+        "max": 60
+      },
+      "candidates_per_s1_S2": {
+        "mean": 3.337,
+        "p50": 2.0,
+        "p95": 9.0,
+        "p99": 21.0,
+        "max": 30
+      },
+      "candidates_per_s1_S3": {
+        "mean": 3.016,
+        "p50": 2.0,
+        "p95": 8.0,
+        "p99": 18.0,
+        "max": 30
+      },
+      "candidates_total": 2803798,
+      "candidates_per_s1_by_country": {
+        "US": 4.987,
+        "India": 8.399
+      }
+    },
+    "k15_t10.4": {
+      "pair_recall": 0.92579,
+      "true_pairs": 1527191,
+      "pairs_kept": 1413853,
+      "pair_recall_by_source": {
+        "S2": 0.93024,
+        "S3": 0.92161
+      },
+      "entity_all_matches_kept": 0.77274,
+      "entity_at_least_one_kept": 0.99303,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "India": {
+          "pair_recall": 0.90881,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.73793,
+          "entity_any_kept": 0.98969
+        },
+        "US": {
+          "pair_recall": 0.93713,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.79597,
+          "entity_any_kept": 0.99526
+        }
+      },
+      "by_script": {
+        "Oriya": {
+          "pair_recall": 0.87995,
+          "true_pairs": 1716
+        },
+        "Latin": {
+          "pair_recall": 0.93158,
+          "true_pairs": 1417165
+        },
+        "Devanagari": {
+          "pair_recall": 0.85938,
+          "true_pairs": 62430
+        },
+        "Bengali": {
+          "pair_recall": 0.85437,
+          "true_pairs": 7011
+        },
+        "Tamil": {
+          "pair_recall": 0.76504,
+          "true_pairs": 7963
+        },
+        "Telugu": {
+          "pair_recall": 0.87506,
+          "true_pairs": 8972
+        },
+        "Malayalam": {
+          "pair_recall": 0.86406,
+          "true_pairs": 4399
+        },
+        "Gujarati": {
+          "pair_recall": 0.85742,
+          "true_pairs": 7147
+        },
+        "Kannada": {
+          "pair_recall": 0.81756,
+          "true_pairs": 8759
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.89687,
+          "true_pairs": 1629
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 3.909,
+        "p50": 4.0,
+        "p95": 8.0,
+        "p99": 12.0,
+        "max": 30
+      },
+      "candidates_per_s1_S2": {
+        "mean": 1.953,
+        "p50": 2.0,
+        "p95": 4.0,
+        "p99": 7.0,
+        "max": 15
+      },
+      "candidates_per_s1_S3": {
+        "mean": 1.956,
+        "p50": 2.0,
+        "p95": 4.0,
+        "p99": 7.0,
+        "max": 15
+      },
+      "candidates_total": 1725471,
+      "candidates_per_s1_by_country": {
+        "US": 3.721,
+        "India": 4.192
+      }
+    },
+    "k30_t10.4": {
+      "pair_recall": 0.92579,
+      "true_pairs": 1527191,
+      "pairs_kept": 1413862,
+      "pair_recall_by_source": {
+        "S2": 0.93024,
+        "S3": 0.92162
+      },
+      "entity_all_matches_kept": 0.77276,
+      "entity_at_least_one_kept": 0.99303,
+      "non_singleton_s1": 416714,
+      "by_country": {
+        "India": {
+          "pair_recall": 0.90883,
+          "true_pairs": 611644,
+          "entity_all_kept": 0.73797,
+          "entity_any_kept": 0.98969
+        },
+        "US": {
+          "pair_recall": 0.93713,
+          "true_pairs": 915547,
+          "entity_all_kept": 0.79597,
+          "entity_any_kept": 0.99526
+        }
+      },
+      "by_script": {
+        "Malayalam": {
+          "pair_recall": 0.86406,
+          "true_pairs": 4399
+        },
+        "Gujarati": {
+          "pair_recall": 0.85742,
+          "true_pairs": 7147
+        },
+        "Latin": {
+          "pair_recall": 0.93159,
+          "true_pairs": 1417165
+        },
+        "Telugu": {
+          "pair_recall": 0.87506,
+          "true_pairs": 8972
+        },
+        "Oriya": {
+          "pair_recall": 0.87995,
+          "true_pairs": 1716
+        },
+        "Tamil": {
+          "pair_recall": 0.76504,
+          "true_pairs": 7963
+        },
+        "Bengali": {
+          "pair_recall": 0.85437,
+          "true_pairs": 7011
+        },
+        "Gurmukhi": {
+          "pair_recall": 0.89687,
+          "true_pairs": 1629
+        },
+        "Kannada": {
+          "pair_recall": 0.81756,
+          "true_pairs": 8759
+        },
+        "Devanagari": {
+          "pair_recall": 0.85938,
+          "true_pairs": 62430
+        }
+      },
+      "candidates_per_s1": {
+        "mean": 3.924,
+        "p50": 4.0,
+        "p95": 8.0,
+        "p99": 12.0,
+        "max": 60
+      },
+      "candidates_per_s1_S2": {
+        "mean": 1.961,
+        "p50": 2.0,
+        "p95": 4.0,
+        "p99": 7.0,
+        "max": 30
+      },
+      "candidates_per_s1_S3": {
+        "mean": 1.963,
+        "p50": 2.0,
+        "p95": 4.0,
+        "p99": 7.0,
+        "max": 30
+      },
+      "candidates_total": 1732065,
+      "candidates_per_s1_by_country": {
+        "US": 3.721,
+        "India": 4.229
+      }
+    }
+  },
+  "per_country_blocking": {
+    "India": {
+      "s1": 176637,
+      "s2": 403249,
+      "s3": 423096,
+      "n_stopwords": 36,
+      "stopwords_sample": [
+        "and",
+        "brothers",
+        "center",
+        "company",
+        "corporation",
+        "drive",
+        "enterprises",
+        "exports",
+        "foundation",
+        "global",
+        "group",
+        "holdings",
+        "india",
+        "industries",
+        "international",
+        "li",
+        "limited",
+        "llp",
+        "m",
+        "marketing",
+        "mr",
+        "partners",
+        "pra",
+        "praivet",
+        "private",
+        "public",
+        "services",
+        "shri",
+        "smt",
+        "solutions",
+        "south",
+        "sri",
+        "technologies",
+        "traders",
+        "trading",
+        "ventures"
+      ],
+      "features_total_dropped": {
+        "word": [
+          147460,
+          0
+        ],
+        "char": [
+          19087,
+          359
+        ],
+        "sk": [
+          3961,
+          225
+        ],
+        "addr": [
+          190976,
+          145
+        ]
+      },
+      "seconds": 59.0,
+      "pairs": 10598205
+    },
+    "US": {
+      "s1": 264726,
+      "s2": 603635,
+      "s3": 633583,
+      "n_stopwords": 28,
+      "stopwords_sample": [
+        "a",
+        "and",
+        "associates",
+        "c",
+        "care",
+        "center",
+        "clinic",
+        "company",
+        "corporation",
+        "d",
+        "group",
+        "health",
+        "holdings",
+        "incorporated",
+        "l",
+        "limited",
+        "llc",
+        "lp",
+        "medicine",
+        "of",
+        "p",
+        "partners",
+        "pc",
+        "pediatric",
+        "service",
+        "services",
+        "south",
+        "the"
+      ],
+      "features_total_dropped": {
+        "word": [
+          253049,
+          0
+        ],
+        "char": [
+          20866,
+          428
+        ],
+        "sk": [
+          5064,
+          262
+        ],
+        "addr": [
+          153240,
+          71
+        ]
+      },
+      "seconds": 129.9,
+      "pairs": 15883560
+    }
+  },
+  "inner_timings_s": {
+    "vectorize_s": 62.4,
+    "retrieve_score_s": 126.5
+  },
+  "steps": {
+    "load_normalized_and_truth": {
+      "seconds": 4.1,
+      "peak_rss_gb": 1.615,
+      "rss_end_gb": 1.615,
+      "peak_is_per_step": true
+    },
+    "blocking_retrieve_score_topk": {
+      "seconds": 188.9,
+      "peak_rss_gb": 3.768,
+      "rss_end_gb": 3.088,
+      "peak_is_per_step": true
+    },
+    "evaluate": {
+      "seconds": 4.5,
+      "peak_rss_gb": 7.153,
+      "rss_end_gb": 3.279,
+      "peak_is_per_step": true
+    },
+    "write_outputs": {
+      "seconds": 7.8,
+      "peak_rss_gb": 6.588,
+      "rss_end_gb": 6.306,
+      "peak_is_per_step": true
+    }
+  },
+  "total_seconds": 205.3,
+  "exported_candidate_files": {
+    "5": {
+      "path": "/workspace/amlc/work/candidate_pairs_val_k5.tsv",
+      "rows": 441363
+    },
+    "10": {
+      "path": "/workspace/amlc/work/candidate_pairs_val_k10.tsv",
+      "rows": 441363
+    },
+    "15": {
+      "path": "/workspace/amlc/work/candidate_pairs_val_k15.tsv",
+      "rows": 441363
+    },
+    "20": {
+      "path": "/workspace/amlc/work/candidate_pairs_val_k20.tsv",
+      "rows": 441363
+    },
+    "30": {
+      "path": "/workspace/amlc/work/candidate_pairs_val_k30.tsv",
+      "rows": 441363
+    }
+  },
+  "candidate_parquet": "/workspace/amlc/work/candidates_val_k15.parquet"
+}

@@ -1,0 +1,71 @@
+{
+ "weights": {
+  "cos_word": -2.04498028755188,
+  "cos_char": 4.46702241897583,
+  "cos_sk": 5.816771507263184,
+  "cos_addr": 14.260311126708984,
+  "addr_missing": 1.3104336261749268,
+  "miss_cos_word": 1.3950635194778442,
+  "miss_cos_char": 1.1788580417633057,
+  "miss_cos_sk": 1.022807002067566
+ },
+ "intercept": -14.178709983825684,
+ "config": {
+  "m_per_method": 30,
+  "reverse_top": 5
+ },
+ "features": "cos_word, cos_char, cos_sk, cos_addr, addr_missing (either address empty), miss_cos_* = addr_missing*cos_*",
+ "source": "LogisticRegression on the train-side tuning union (20% S1 sample of a 25% train-side S1 subset, M=30 + reverse top-5); no validation data used",
+ "tune_union_ceiling": 0.9812,
+ "tune_recall_at_k": {
+  "5": 0.97345,
+  "10": 0.97785,
+  "15": 0.97883,
+  "20": 0.97931,
+  "30": 0.97989
+ },
+ "tune_curve_k15_(p,score_threshold,recall,cand_per_s1)": [
+  [
+   0.0005,
+   6.578,
+   0.97853,
+   23.767
+  ],
+  [
+   0.001,
+   7.272,
+   0.978,
+   19.255
+  ],
+  [
+   0.002,
+   7.966,
+   0.97688,
+   15.753
+  ],
+  [
+   0.005,
+   8.885,
+   0.97377,
+   8.199
+  ],
+  [
+   0.01,
+   9.584,
+   0.97021,
+   6.32
+  ],
+  [
+   0.02,
+   10.287,
+   0.96505,
+   5.222
+  ],
+  [
+   0.05,
+   11.234,
+   0.95502,
+   4.369
+  ]
+ ]
+}
