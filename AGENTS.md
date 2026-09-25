@@ -7,6 +7,7 @@ Amazon ML Challenge 2026: Business Entity Resolution.
 - Read TSV files with `sep="\t"`. Never modify the original data.
 - Never train on test data or leak ground-truth labels. Keep entities grouped when splitting train/validation.
 - Do not hard-code countries. Use deterministic seeds.
+- Do not assume the test singleton rate matches train. Threshold tuning must hold up across different singleton rates.
 - Never claim an improvement without measured validation results committed under `reports/`.
 - Work on a branch and open a PR; do not push directly to `main`.
 
@@ -29,8 +30,9 @@ Amazon ML Challenge 2026: Business Entity Resolution.
 7. `matching_results.tsv` + `candidate_pairs.tsv`, validated with `utils/validate_submission.py`
 
 ## Roles
-- Coordinator: plan, assign tasks, compare experiments
-- Codex: implementation, tests, validation
-- ChatGPT: architecture and metric review
-- Claude: independent code and methodology review
-- Kaggle: full-scale runs and submission
+- Coordinator (New Bot): plan, assign tasks, compare experiments
+- Codex (Codex CLI, run by Arshdeep): implementation, tests, validation
+- chatgpt: architecture and metric review
+- claudu: independent code and methodology review
+- majdoor: Kaggle full-scale runs and submission
+- Gitu: GitHub repo, branches and PRs
