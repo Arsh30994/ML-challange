@@ -1,0 +1,73 @@
+{
+  "candidates": {
+    "entity_coverage": 1.0,
+    "entity_coverage_definition": "fraction of evaluated NON-singleton S1 whose true matches are all in their candidate list",
+    "candidate_recall": 1.0,
+    "candidate_recall_definition": "pair level: fraction of evaluated true (s1, id) pairs present in candidates",
+    "oracle_macro_f05": 1.0,
+    "oracle_nonsingleton_macro_f05": 1.0,
+    "oracle_definition": "per S1 predict exactly true \u2229 candidates; singletons -> empty -> 1.0",
+    "nonsingleton_s1_fully_covered": 2083574,
+    "nonsingleton_s1_zero_true_in_candidates": 0,
+    "candidates_per_s1": {
+      "mean": 3.4612526344456573,
+      "p50": 3.0,
+      "p95": 6.0,
+      "p99": 8.0,
+      "max": 11
+    },
+    "evaluated_s1_without_candidates": 123247,
+    "cand_pairs_total": 7638365
+  },
+  "n_s1_evaluated": 2206821,
+  "singleton_rate": 0.05584820880352326,
+  "mode": "oracle_only",
+  "checks": {
+    "gt_malformed_null_fields": 0,
+    "gt_s1_ids_with_whitespace": 0,
+    "gt_empty_s1_id_rows": 0,
+    "gt_rows": 2206821,
+    "gt_duplicate_s1_rows": 0,
+    "gt_tokens_with_whitespace": 0,
+    "gt_empty_tokens": 0,
+    "gt_ids_bad_prefix": 0,
+    "n_s1_evaluated": 2206821,
+    "cand_format": "list",
+    "cand_malformed_null_fields": 0,
+    "cand_s1_ids_with_whitespace": 0,
+    "cand_empty_s1_id_rows": 0,
+    "cand_rows": 2206821,
+    "cand_duplicate_s1_rows": 0,
+    "cand_tokens_with_whitespace": 0,
+    "cand_empty_tokens": 0,
+    "cand_ids_bad_prefix": 0,
+    "gt_duplicate_ids_within_list": 0,
+    "gt_ids_matched_to_multiple_s1": 0,
+    "evaluated_s1_missing_from_pred": 2206821,
+    "cand_duplicate_ids_within_list": 0,
+    "cand_pairs_total": 7638365,
+    "candidates_per_s1": {
+      "mean": 3.4612526344456573,
+      "p50": 3.0,
+      "p95": 6.0,
+      "p99": 8.0,
+      "max": 11
+    },
+    "evaluated_s1_without_candidates": 123247,
+    "true_pairs_evaluated": 7638365,
+    "candidate_recall": 1.0,
+    "true_pairs_missing_from_candidates": 0
+  },
+  "warnings": [],
+  "errors": [],
+  "valid": true,
+  "score_seconds": 11.817,
+  "read_seconds": 4.542,
+  "inputs": {
+    "gt": "/workspace/amlc/dataset/dataset/train/train_ground_truth.tsv",
+    "pred": null,
+    "cand": "sanity/cand_gt.tsv",
+    "s1_ids": null,
+    "source1": null
+  }
+}
