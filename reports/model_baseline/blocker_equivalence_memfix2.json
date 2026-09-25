@@ -1,0 +1,44 @@
+{
+ "slice": {
+  "s1": 40000,
+  "s2": 159986,
+  "s3": 170255
+ },
+ "pairs_old": 800000,
+ "pairs_new": 800000,
+ "only_in_old": 0,
+ "only_in_new": 0,
+ "column_diffs_on_common_pairs": {
+  "cos_word": {
+   "n_diff": 0,
+   "max_abs_diff": 0.0
+  },
+  "cos_char": {
+   "n_diff": 0,
+   "max_abs_diff": 0.0
+  },
+  "cos_sk": {
+   "n_diff": 0,
+   "max_abs_diff": 0.0
+  },
+  "cos_addr": {
+   "n_diff": 0,
+   "max_abs_diff": 0.0
+  },
+  "addr_missing": {
+   "n_diff": 0,
+   "max_abs_diff": 0.0
+  },
+  "methods": {
+   "n_diff": 0
+  },
+  "score": {
+   "n_diff": 0,
+   "max_abs_diff": 0.0
+  },
+  "rank": {
+   "n_diff": 0
+  }
+ },
+ "exact_match": true
+}

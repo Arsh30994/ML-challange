@@ -1,0 +1,146 @@
+{
+  "nonsingleton": {
+    "n": 416714,
+    "macro_f05": 0.9733760549551735,
+    "mean_precision": 0.986096020271318,
+    "mean_recall": 0.9458688935361186
+  },
+  "macro_f05": 0.9722279152638309,
+  "mean_precision_all_incl_singletons": 0.9842375028974834,
+  "mean_recall_all_incl_singletons": 0.9462569587867813,
+  "note": "macro_f05 is the leaderboard metric (all S1). *_all_incl_singletons count singletons as P=R=1 if predicted empty, else 0; 'nonsingleton' excludes singletons.",
+  "candidates": {
+    "entity_coverage": 0.9390325259050571,
+    "entity_coverage_definition": "fraction of evaluated NON-singleton S1 whose true matches are all in their candidate list",
+    "candidate_recall": 0.9789292891327934,
+    "candidate_recall_definition": "pair level: fraction of evaluated true (s1, id) pairs present in candidates",
+    "oracle_macro_f05": 0.9922851978996636,
+    "oracle_nonsingleton_macro_f05": 0.9918288605628542,
+    "oracle_definition": "per S1 predict exactly true \u2229 candidates; singletons -> empty -> 1.0",
+    "nonsingleton_s1_fully_covered": 391308,
+    "nonsingleton_s1_zero_true_in_candidates": 1046,
+    "candidates_per_s1": {
+      "mean": 20.0,
+      "p50": 20.0,
+      "p95": 20.0,
+      "p99": 20.0,
+      "max": 20
+    },
+    "evaluated_s1_without_candidates": 0,
+    "cand_pairs_total": 8827260
+  },
+  "n_s1_evaluated": 441363,
+  "singleton_rate": 0.055847454362962005,
+  "breakdown": {
+    "singletons": {
+      "n": 24649,
+      "macro_f05": 0.9528175585216438,
+      "mean_precision": 0.9528175585216438,
+      "mean_recall": 0.9528175585216438,
+      "accuracy_pred_empty": 0.9528175585216438
+    },
+    "non_singletons": {
+      "n": 416714,
+      "macro_f05": 0.9733760549551735,
+      "mean_precision": 0.986096020271318,
+      "mean_recall": 0.9458688935361186
+    },
+    "by_country": {
+      "US": {
+        "n": 264726,
+        "macro_f05": 0.9781635310648019,
+        "mean_precision": 0.9870502429918581,
+        "mean_recall": 0.9581610324711684,
+        "singleton_rate": 0.055827534885126505,
+        "non_singleton_macro_f05": 0.9795969502520965,
+        "entity_coverage": 0.9693014919162862,
+        "oracle_macro_f05": 0.9970988452162044,
+        "oracle_nonsingleton_macro_f05": 0.9969273041833066
+      },
+      "India": {
+        "n": 176637,
+        "macro_f05": 0.9633322035583115,
+        "mean_precision": 0.9800220472781997,
+        "mean_recall": 0.9284163149229643,
+        "singleton_rate": 0.055877307698839994,
+        "non_singleton_macro_f05": 0.9640523031530787,
+        "entity_coverage": 0.8936660130601378,
+        "oracle_macro_f05": 0.9850709811754295,
+        "oracle_nonsingleton_macro_f05": 0.9841874165865208
+      }
+    }
+  },
+  "pair_level": {
+    "tp": 1444128,
+    "pred_pairs": 1458231,
+    "true_pairs": 1527191,
+    "precision": 0.9903286927791276,
+    "recall": 0.9456106014244453
+  },
+  "pred_empty_rate": 0.05859575904640851,
+  "checks": {
+    "gt_malformed_null_fields": 0,
+    "gt_s1_ids_with_whitespace": 0,
+    "gt_empty_s1_id_rows": 0,
+    "gt_rows": 2206821,
+    "gt_duplicate_s1_rows": 0,
+    "gt_tokens_with_whitespace": 0,
+    "gt_empty_tokens": 0,
+    "gt_ids_bad_prefix": 0,
+    "s1_ids_requested": 441363,
+    "s1_ids_not_in_gt": 0,
+    "n_s1_evaluated": 441363,
+    "pred_malformed_null_fields": 0,
+    "pred_s1_ids_with_whitespace": 0,
+    "pred_empty_s1_id_rows": 0,
+    "pred_rows": 441363,
+    "pred_duplicate_s1_rows": 0,
+    "pred_tokens_with_whitespace": 0,
+    "pred_empty_tokens": 0,
+    "pred_ids_bad_prefix": 0,
+    "cand_format": "list",
+    "cand_malformed_null_fields": 0,
+    "cand_s1_ids_with_whitespace": 0,
+    "cand_empty_s1_id_rows": 0,
+    "cand_rows": 441363,
+    "cand_duplicate_s1_rows": 0,
+    "cand_tokens_with_whitespace": 0,
+    "cand_empty_tokens": 0,
+    "cand_ids_bad_prefix": 0,
+    "gt_duplicate_ids_within_list": 0,
+    "gt_ids_matched_to_multiple_s1": 0,
+    "pred_s1_rows_not_in_gt": 0,
+    "pred_s1_rows_in_gt_not_evaluated": 0,
+    "evaluated_s1_missing_from_pred": 0,
+    "pred_duplicate_ids_within_list": 0,
+    "pred_ids_assigned_to_multiple_s1": 0,
+    "pred_pairs_total": 1458231,
+    "cand_duplicate_ids_within_list": 0,
+    "cand_pairs_total": 8827260,
+    "pred_pairs_not_in_candidates": 0,
+    "candidates_per_s1": {
+      "mean": 20.0,
+      "p50": 20.0,
+      "p95": 20.0,
+      "p99": 20.0,
+      "max": 20
+    },
+    "evaluated_s1_without_candidates": 0,
+    "true_pairs_evaluated": 1527191,
+    "candidate_recall": 0.9789292891327934,
+    "true_pairs_missing_from_candidates": 32179,
+    "pred_pairs_for_unscored_s1": 0
+  },
+  "warnings": [],
+  "errors": [],
+  "valid": true,
+  "score_seconds": 14.912,
+  "read_seconds": 6.084,
+  "inputs": {
+    "gt": "/workspace/amlc/dataset/dataset/train/train_ground_truth.tsv",
+    "pred": "/workspace/amlc/work/loco_pred_val_ALL.tsv",
+    "cand": "/workspace/amlc/work/candidate_pairs_val_k10.tsv",
+    "s1_ids": "/workspace/amlc/work/split/val_s1_ids.txt",
+    "source1": "/workspace/amlc/dataset/dataset/train/train_source1.tsv"
+  }
+}

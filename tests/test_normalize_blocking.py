@@ -83,3 +83,31 @@ def test_recall_at_k_counts():
     assert r["2"]["entity_all_matches_kept"] == 0.5 and r["2"]["entity_at_least_one_kept"] == 0.5
     assert r["1"]["candidates_total"] == 3 and r["2"]["candidates_total"] == 4
     assert r["2"]["candidates_per_s1"]["max"] == 3
+
+
+def test_stopwords_learned_per_country_only():
+    import pytest
+    from business_entity_resolution.src.blocking import build_country
+    s1 = _frame([("Acme SARL", "1 rue", "France")], "S1")
+    s2 = _frame([("Acme LLC", "1 Main", "US")], "S2")
+    with pytest.raises(AssertionError, match="per country"):
+        build_country(s1, {"s2": s2, "s3": s2}, BlockConfig())
+    s2f = _frame([("Acme SAS", "1 rue", "France")], "S2")
+    cfg = BlockConfig(stop_df_frac=1.0, char_df_cap=1.0, addr_df_cap=1.0, word_df_cap=1.0, threshold=0.0, n_threads=1)
+    _, info, _ = run_blocking(s1, s2f, s2f.clear(), cfg, data_tag="test")
+    assert "France" in info and info["France"]["stopwords_source"].startswith("test: country='France'")
+
+
+def test_decode_macro_f05():
+    from business_entity_resolution.src.decode import macro_f05, prepare
+    sc = pl.DataFrame({"s1_idx": [0, 0, 1, 2], "src": [2, 2, 2, 2], "cand_idx": [10, 11, 10, 12],
+                       "p": [0.9, 0.2, 0.6, 0.3], "y": [True, False, False, False]})
+    tc = pl.DataFrame({"s1_idx": [0], "n_true": [2]}, schema={"s1_idx": pl.Int64, "n_true": pl.UInt32})
+    s1 = pl.DataFrame({"s1_idx": [0, 1, 2]})
+    kept, base = prepare(sc, tc, s1)
+    assert kept.filter(pl.col("s1_idx") == 1).height == 0  # record 10 goes to S1 0 only
+    r = macro_f05(kept, base, 0.5, 0.5)
+    # S1 0: P=1, R=0.5 -> F=1.25*0.5/(0.25+0.5)=0.8333; S1 1 singleton empty ->1; S1 2 singleton, p 0.3<0.5 ->1
+    assert abs(r["macro_f05"] - (0.8333333 + 1 + 1) / 3) < 1e-6
+    r = macro_f05(kept, base, 0.25, 0.25)  # S1 2 now predicts record 12 -> 0
+    assert abs(r["macro_f05"] - (0.8333333 + 1 + 0) / 3) < 1e-6

@@ -61,8 +61,9 @@ def main(argv=None):
     for n in (1, 2, 3):
         t = time.time()
         df = load_source(a.data_dir, "train", n)
-        sp = pl.read_parquet(f"{a.split_dir}/s{n}_split.parquet").filter(pl.col("side") == a.side)
-        df = df.join(sp.select("entity_id"), on="entity_id", how="semi")
+        if a.side != "all":  # "all" = whole train universe (both split sides)
+            sp = pl.read_parquet(f"{a.split_dir}/s{n}_split.parquet").filter(pl.col("side") == a.side)
+            df = df.join(sp.select("entity_id"), on="entity_id", how="semi")
         t1 = time.time()
         normalize_frame(df).write_parquet(f"{a.out_prefix}_s{n}.parquet")
         print(f"s{n} rows={df.height} load_s={t1 - t:.1f} normalize_s={time.time() - t1:.1f} "

@@ -1,0 +1,179 @@
+{
+  "features_train_s": 25.1,
+  "features_val_s": 27.9,
+  "model_sizes": {
+    "ALL": {
+      "train_rows": 7954900,
+      "earlystop_rows": 880460,
+      "train_s1": 397745,
+      "positives": 1347289,
+      "best_iter": 133,
+      "seconds": 29.2
+    },
+    "US": {
+      "train_rows": 4765160,
+      "earlystop_rows": 527740,
+      "train_s1": 238258,
+      "positives": 816788,
+      "best_iter": 209,
+      "seconds": 22.2
+    },
+    "India": {
+      "train_rows": 3189740,
+      "earlystop_rows": 352720,
+      "train_s1": 159487,
+      "positives": 530501,
+      "best_iter": 388,
+      "seconds": 32.9
+    }
+  },
+  "top_gain_features": {
+    "ALL": {
+      "score": 20148659.0,
+      "rec_rank": 9465398.0,
+      "rec_gap": 3090959.0,
+      "cos_sk": 1542945.0,
+      "num_jacc": 805756.0,
+      "name_jw": 485588.0,
+      "rec_n_close": 397451.0,
+      "len_diff": 384863.0
+    },
+    "US": {
+      "len_diff": 14351011.0,
+      "score": 14206281.0,
+      "name_jw": 6253466.0,
+      "rec_rank": 4074707.0,
+      "rec_gap": 1115670.0,
+      "s1_gap": 575093.0,
+      "rank": 482293.0,
+      "num_jacc": 463987.0
+    },
+    "India": {
+      "rec_rank": 6322375.0,
+      "score": 5004378.0,
+      "rec_gap": 1498503.0,
+      "num_jacc": 418734.0,
+      "rec_n_close": 206497.0,
+      "name_pr": 204186.0,
+      "name_jw": 185263.0,
+      "len_diff": 178962.0
+    }
+  },
+  "decode_tune_s": 44.2,
+  "results": {
+    "LOCO_India: US-only model, tuned on US val -> India val": {
+      "model": "US",
+      "thresholds_tuned_on_val": "US",
+      "evaluated_on_val": "India",
+      "t": 0.7,
+      "t_empty": 0.85,
+      "tune_pop_macro_f05": 0.98027,
+      "macro_f05": 0.93545,
+      "nonsingleton_f05": 0.93992,
+      "singleton_acc": 0.85998,
+      "pair_precision": 0.96867,
+      "pair_recall": 0.90568,
+      "n_s1": 176637
+    },
+    "NORMAL_India_sameproc: ALL model, tuned on US val -> India val": {
+      "model": "ALL",
+      "thresholds_tuned_on_val": "US",
+      "evaluated_on_val": "India",
+      "t": 0.7,
+      "t_empty": 0.85,
+      "tune_pop_macro_f05": 0.97819,
+      "macro_f05": 0.96312,
+      "nonsingleton_f05": 0.96313,
+      "singleton_acc": 0.96302,
+      "pair_precision": 0.98927,
+      "pair_recall": 0.92656,
+      "n_s1": 176637
+    },
+    "NORMAL_India_allval: ALL model, tuned on all val -> India val": {
+      "model": "ALL",
+      "thresholds_tuned_on_val": "ALL",
+      "evaluated_on_val": "India",
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_pop_macro_f05": 0.97223,
+      "macro_f05": 0.96333,
+      "nonsingleton_f05": 0.96405,
+      "singleton_acc": 0.95117,
+      "pair_precision": 0.98904,
+      "pair_recall": 0.9269,
+      "n_s1": 176637
+    },
+    "NORMAL_India_incountry: ALL model, tuned on India val -> India val (optimistic)": {
+      "model": "ALL",
+      "thresholds_tuned_on_val": "India",
+      "evaluated_on_val": "India",
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_pop_macro_f05": 0.96333,
+      "macro_f05": 0.96333,
+      "nonsingleton_f05": 0.96405,
+      "singleton_acc": 0.95117,
+      "pair_precision": 0.98904,
+      "pair_recall": 0.9269,
+      "n_s1": 176637
+    },
+    "LOCO_US: India-only model, tuned on India val -> US val": {
+      "model": "India",
+      "thresholds_tuned_on_val": "India",
+      "evaluated_on_val": "US",
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_pop_macro_f05": 0.96778,
+      "macro_f05": 0.96621,
+      "nonsingleton_f05": 0.9692,
+      "singleton_acc": 0.91562,
+      "pair_precision": 0.98361,
+      "pair_recall": 0.94246,
+      "n_s1": 264726
+    },
+    "NORMAL_US_sameproc: ALL model, tuned on India val -> US val": {
+      "model": "ALL",
+      "thresholds_tuned_on_val": "India",
+      "evaluated_on_val": "US",
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_pop_macro_f05": 0.96333,
+      "macro_f05": 0.97816,
+      "nonsingleton_f05": 0.9796,
+      "singleton_acc": 0.95392,
+      "pair_precision": 0.99116,
+      "pair_recall": 0.95811,
+      "n_s1": 264726
+    },
+    "NORMAL_US_incountry: ALL model, tuned on US val -> US val (optimistic)": {
+      "model": "ALL",
+      "thresholds_tuned_on_val": "US",
+      "evaluated_on_val": "US",
+      "t": 0.7,
+      "t_empty": 0.85,
+      "tune_pop_macro_f05": 0.97819,
+      "macro_f05": 0.97819,
+      "nonsingleton_f05": 0.97883,
+      "singleton_acc": 0.96725,
+      "pair_precision": 0.99141,
+      "pair_recall": 0.95786,
+      "n_s1": 264726
+    },
+    "NORMAL_ALL: ALL model, tuned on all val -> all val (optimistic)": {
+      "model": "ALL",
+      "thresholds_tuned_on_val": "ALL",
+      "evaluated_on_val": "ALL",
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_pop_macro_f05": 0.97223,
+      "macro_f05": 0.97223,
+      "nonsingleton_f05": 0.97338,
+      "singleton_acc": 0.95282,
+      "pair_precision": 0.99033,
+      "pair_recall": 0.94561,
+      "n_s1": 441363
+    }
+  },
+  "total_s": 234.4,
+  "peak_rss_gb": 3.96
+}

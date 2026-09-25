@@ -1,0 +1,55 @@
+{
+ "k10": {
+  "pairs": 8827260,
+  "cand_per_s1": 20.0,
+  "A": {
+   "macro_f05": 0.97155,
+   "nonsingleton_f05": 0.9742,
+   "singleton_acc": 0.92665,
+   "pair_precision": 0.98979,
+   "pair_recall": 0.94586,
+   "n_s1": 220326,
+   "t": 0.7,
+   "t_empty": 0.7
+  },
+  "B": {
+   "macro_f05": 0.97164,
+   "nonsingleton_f05": 0.97428,
+   "singleton_acc": 0.9273,
+   "pair_precision": 0.98969,
+   "pair_recall": 0.94618,
+   "n_s1": 221037,
+   "t": 0.7,
+   "t_empty": 0.7
+  }
+ },
+ "k10_floor7.966": {
+  "pairs": 5712171,
+  "cand_per_s1": 12.942,
+  "A": {
+   "macro_f05": 0.97136,
+   "nonsingleton_f05": 0.97396,
+   "singleton_acc": 0.92722,
+   "pair_precision": 0.98988,
+   "pair_recall": 0.945,
+   "n_s1": 220326,
+   "t": 0.7,
+   "t_empty": 0.7
+  },
+  "B": {
+   "macro_f05": 0.97144,
+   "nonsingleton_f05": 0.97402,
+   "singleton_acc": 0.92794,
+   "pair_precision": 0.98978,
+   "pair_recall": 0.94534,
+   "n_s1": 221037,
+   "t": 0.7,
+   "t_empty": 0.7
+  }
+ },
+ "decision": {
+  "half_A_diff_k10_minus_floor": 0.00019,
+  "chosen": "k10_floor7.966",
+  "rule": "prefer smaller set if within 0.001 on half A"
+ }
+}
