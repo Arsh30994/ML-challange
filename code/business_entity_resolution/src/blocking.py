@@ -114,7 +114,16 @@ def _fit(texts_by_part, **kw):
 
 
 def build_country(n1: pl.DataFrame, targets: dict[str, pl.DataFrame], cfg: BlockConfig):
-    """Vectorize one country. Returns dict: method -> {"full": [X1, X2, X3], "ret": [...]}."""
+    """Vectorize one country. Returns dict: method -> {"full": [X1, X2, X3], "ret": [...]}.
+
+    Stopwords and IDF are learned ONLY from the rows passed in (this country's S1/S2/S3 of the data
+    being processed, e.g. the test sources at inference). There is no global or cross-country list to
+    fall back to; the assertion below enforces a single country value in the inputs."""
+    vals = set(n1["country"].unique().to_list())
+    for t in targets.values():
+        vals |= set(t["country"].unique().to_list())
+    assert len(vals) == 1, f"stopwords/IDF must be learned per country; got country values {sorted(vals)}"
+    assert n1.height > 0, "no S1 rows for this country: stopwords cannot be learned from its own data"
     names = [n1["name_n"].to_list()] + [t["name_n"].to_list() for t in targets.values()]
     stop = learn_country_stopwords([x for p in names for x in p], cfg.stop_df_frac)
     core = [_core(p, stop) for p in names]
@@ -211,7 +220,7 @@ def block_country(n1: pl.DataFrame, targets: dict[str, pl.DataFrame], cfg: Block
 
 
 def run_blocking(n1: pl.DataFrame, n2: pl.DataFrame, n3: pl.DataFrame, cfg: BlockConfig, keep_all=False,
-                 s1_subset: np.ndarray | None = None, log=print):
+                 s1_subset: np.ndarray | None = None, log=print, data_tag: str = "unspecified"):
     """Loop over country values of S1 (open set). Targets with a country value absent from S1
     can never be candidates (all true pairs share the country value)."""
     res, info, timings = [], {}, {}
@@ -226,6 +235,8 @@ def run_blocking(n1: pl.DataFrame, n2: pl.DataFrame, n3: pl.DataFrame, cfg: Bloc
             res.append(cand)
         info[country] = {"s1": a.height, "s2": t["s2"].height, "s3": t["s3"].height,
                          "n_stopwords": len(stop), "stopwords_sample": stop[:40],
+                         "stopwords_source": f"{data_tag}: country={country!r} S1+S2+S3 names of this run only "
+                                             f"({a.height + t['s2'].height + t['s3'].height} docs)",
                          "features_total_dropped": feats, "seconds": round(time.time() - t0, 1),
                          "pairs": 0 if cand is None else cand.height}
         log(f"[blocking] {country}: {info[country]['seconds']}s pairs={info[country]['pairs']}")

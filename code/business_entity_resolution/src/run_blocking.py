@@ -126,7 +126,7 @@ def main(argv=None):
         return
 
     mem.start()
-    cand, info, tim = run_blocking(n1, n2, n3, cfg)
+    cand, info, tim = run_blocking(n1, n2, n3, cfg, data_tag=a.norm_prefix)
     mem.stop("blocking_retrieve_score_topk")
 
     mem.start()
