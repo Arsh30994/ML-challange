@@ -19,6 +19,8 @@ from rapidfuzz.process import cpdist
 BASE = ["cos_word", "cos_char", "cos_sk", "cos_addr", "addr_missing", "score", "rank", "methods"]
 FEATURES = BASE + ["s1_gap", "s1_n", "rec_rank", "rec_gap", "rec_n_close", "name_tsr", "name_jw", "name_pr",
                    "addr_tsr", "num_jacc", "len_diff", "translit", "is_s3"]
+# v2: absolute name-length difference replaced by relative |la-lb|/max(la,lb) (LOCO: len_diff did not transfer)
+FEATURES_V2 = [f if f != "len_diff" else "len_rel" for f in FEATURES]
 
 
 def _num_jacc(a: pl.Series, b: pl.Series) -> np.ndarray:
@@ -34,12 +36,10 @@ def build_features(cand: pl.DataFrame, n1: pl.DataFrame, n2: pl.DataFrame, n3: p
         (pl.col("score").max().over("s1_idx", "src") - pl.col("score")).alias("s1_gap"),
         pl.len().over("s1_idx", "src").cast(pl.Float32).alias("s1_n"),
         pl.col("score").rank("ordinal", descending=True).over("src", "cand_idx").cast(pl.Float32).alias("rec_rank"),
-        (pl.col("score").max().over("src", "cand_idx") - pl.col("score")).alias("rec_gap"),
-    ).with_columns(
-        ((pl.col("score") >= pl.col("score").max().over("src", "cand_idx") - 1.0).sum().over("src", "cand_idx"))
-        .cast(pl.Float32).alias("rec_n_close"),
+        pl.col("score").max().over("src", "cand_idx").alias("_rec_best"),
         (pl.col("src") == 3).cast(pl.Float32).alias("is_s3"),
-    )
+    ).with_columns((pl.col("_rec_best") - pl.col("score")).alias("rec_gap"))
+    c = c.with_columns((pl.col("rec_gap") <= 1.0).cast(pl.Float32).sum().over("src", "cand_idx").alias("rec_n_close")).drop("_rec_best")
     a = n1.select(pl.col("idx").alias("s1_idx"), pl.col("name_n").alias("n_a"), pl.col("addr_n").alias("a_a"))
     t = pl.concat([n.select(pl.lit(s, dtype=pl.Int8).alias("src"), pl.col("idx").alias("cand_idx"),
                             pl.col("name_n").alias("n_b"), pl.col("addr_n").alias("a_b"),
@@ -57,6 +57,9 @@ def build_features(cand: pl.DataFrame, n1: pl.DataFrame, n2: pl.DataFrame, n3: p
             pl.Series("num_jacc", _num_jacc(x["a_a"], x["a_b"])),
             (pl.col("n_a").str.len_chars().cast(pl.Int32) - pl.col("n_b").str.len_chars().cast(pl.Int32)).abs()
             .cast(pl.Float32).alias("len_diff"),
+            ((pl.col("n_a").str.len_chars().cast(pl.Int32) - pl.col("n_b").str.len_chars().cast(pl.Int32)).abs()
+             / pl.max_horizontal(pl.col("n_a").str.len_chars(), pl.col("n_b").str.len_chars(), pl.lit(1)))
+            .cast(pl.Float32).alias("len_rel"),
         ).drop("n_a", "n_b", "a_a", "a_b")
         out.append(x)
-    return pl.concat(out).with_columns(pl.col(FEATURES).cast(pl.Float32))
+    return pl.concat(out).with_columns(pl.col(FEATURES + ["len_rel"]).cast(pl.Float32))

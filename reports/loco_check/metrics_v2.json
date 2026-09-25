@@ -1,0 +1,364 @@
+{
+  "features": [
+    "cos_word",
+    "cos_char",
+    "cos_sk",
+    "cos_addr",
+    "addr_missing",
+    "score",
+    "rank",
+    "methods",
+    "s1_gap",
+    "s1_n",
+    "rec_rank",
+    "rec_gap",
+    "rec_n_close",
+    "name_tsr",
+    "name_jw",
+    "name_pr",
+    "addr_tsr",
+    "num_jacc",
+    "translit",
+    "is_s3",
+    "len_rel"
+  ],
+  "relative_features": [
+    "rank",
+    "s1_gap",
+    "s1_n",
+    "rec_rank",
+    "rec_gap",
+    "rec_n_close",
+    "len_rel"
+  ],
+  "model_sizes": {
+    "ALL": {
+      "train_rows": 7954900,
+      "best_iter": 140
+    },
+    "US": {
+      "train_rows": 4765160,
+      "best_iter": 577
+    },
+    "India": {
+      "train_rows": 3189740,
+      "best_iter": 583
+    }
+  },
+  "results": {
+    "ALL model: tuned all-A -> all-B (honest)": {
+      "model": "ALL",
+      "tuned_on": "ALL val half A",
+      "evaluated_on": "ALL val half B",
+      "macro_f05": 0.97096,
+      "nonsingleton_f05": 0.97199,
+      "singleton_acc": 0.95352,
+      "pair_precision": 0.9896,
+      "pair_recall": 0.94382,
+      "n_s1": 221037,
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_half_A_f05": 0.97095
+    },
+    "ALL model: tuned all-A -> India-B": {
+      "model": "ALL",
+      "tuned_on": "ALL val half A",
+      "evaluated_on": "India val half B",
+      "macro_f05": 0.96238,
+      "nonsingleton_f05": 0.96327,
+      "singleton_acc": 0.94737,
+      "pair_precision": 0.98811,
+      "pair_recall": 0.9267,
+      "n_s1": 88171,
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_half_A_f05": 0.97095
+    },
+    "ALL model: tuned all-A -> US-B": {
+      "model": "ALL",
+      "tuned_on": "ALL val half A",
+      "evaluated_on": "US val half B",
+      "macro_f05": 0.97665,
+      "nonsingleton_f05": 0.97779,
+      "singleton_acc": 0.95757,
+      "pair_precision": 0.99056,
+      "pair_recall": 0.95521,
+      "n_s1": 132866,
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_half_A_f05": 0.97095
+    },
+    "LOCO held-out India: US-only model, tuned US-A -> India-B": {
+      "model": "US",
+      "tuned_on": "US val half A",
+      "evaluated_on": "India val half B",
+      "macro_f05": 0.932,
+      "nonsingleton_f05": 0.93801,
+      "singleton_acc": 0.83032,
+      "pair_precision": 0.96703,
+      "pair_recall": 0.90184,
+      "n_s1": 88171,
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_half_A_f05": 0.97923
+    },
+    "normal India: ALL model, tuned US-A -> India-B": {
+      "model": "ALL",
+      "tuned_on": "US val half A",
+      "evaluated_on": "India val half B",
+      "macro_f05": 0.96238,
+      "nonsingleton_f05": 0.96327,
+      "singleton_acc": 0.94737,
+      "pair_precision": 0.98811,
+      "pair_recall": 0.9267,
+      "n_s1": 88171,
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_half_A_f05": 0.97659
+    },
+    "LOCO held-out US: India-only model, tuned India-A -> US-B": {
+      "model": "India",
+      "tuned_on": "India val half A",
+      "evaluated_on": "US val half B",
+      "macro_f05": 0.96595,
+      "nonsingleton_f05": 0.96817,
+      "singleton_acc": 0.92853,
+      "pair_precision": 0.98272,
+      "pair_recall": 0.94395,
+      "n_s1": 132866,
+      "t": 0.7,
+      "t_empty": 0.85,
+      "tune_half_A_f05": 0.96698
+    },
+    "normal US: ALL model, tuned India-A -> US-B": {
+      "model": "ALL",
+      "tuned_on": "India val half A",
+      "evaluated_on": "US val half B",
+      "macro_f05": 0.97665,
+      "nonsingleton_f05": 0.97779,
+      "singleton_acc": 0.95757,
+      "pair_precision": 0.99056,
+      "pair_recall": 0.95521,
+      "n_s1": 132866,
+      "t": 0.7,
+      "t_empty": 0.8,
+      "tune_half_A_f05": 0.96254
+    },
+    "ALL model: tuned on same data (full val -> full val)": {
+      "macro_f05": 0.97103,
+      "nonsingleton_f05": 0.97211,
+      "singleton_acc": 0.95282,
+      "pair_precision": 0.98979,
+      "pair_recall": 0.94362,
+      "n_s1": 441363,
+      "t": 0.7,
+      "t_empty": 0.8
+    },
+    "robust_t_empty": {
+      "grid_half_A_(t_empty, heldout_India, heldout_US, min)": [
+        [
+          0.1,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.15,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.2,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.25,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.3,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.35,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.4,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.45,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.5,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.55,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.6,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.65,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.7,
+          0.93195,
+          0.96494,
+          0.93195
+        ],
+        [
+          0.75,
+          0.93177,
+          0.96522,
+          0.93177
+        ],
+        [
+          0.8,
+          0.93155,
+          0.96556,
+          0.93155
+        ],
+        [
+          0.85,
+          0.93071,
+          0.96561,
+          0.93071
+        ],
+        [
+          0.9,
+          0.92927,
+          0.96532,
+          0.92927
+        ],
+        [
+          0.95,
+          0.92551,
+          0.96367,
+          0.92551
+        ]
+      ],
+      "t_US_model": 0.7,
+      "t_India_model": 0.7,
+      "robust_t_empty": 0.1,
+      "ALL_model_t": 0.7,
+      "ALL_best_t_empty_halfA": 0.8,
+      "ALL_halfB_f05_at_best_t_empty": 0.97096,
+      "ALL_halfB_f05_at_robust_t_empty": 0.97013,
+      "in_country_cost": 0.00083,
+      "use_robust_for_test": true,
+      "India_heldout_at_robust": 0.93263,
+      "US_heldout_at_robust": 0.96541
+    }
+  },
+  "gain": {
+    "ALL": {
+      "score": 20091731.0,
+      "rec_rank": 11452940.0,
+      "rec_gap": 5740164.0,
+      "name_jw": 1930422.0,
+      "num_jacc": 824368.0,
+      "rec_n_close": 399755.0,
+      "s1_gap": 354760.0,
+      "len_rel": 342470.0,
+      "cos_sk": 310237.0,
+      "addr_tsr": 309483.0,
+      "name_tsr": 253692.0,
+      "name_pr": 242959.0,
+      "cos_word": 211510.0,
+      "cos_char": 86255.0,
+      "addr_missing": 78601.0,
+      "methods": 74621.0,
+      "cos_addr": 65638.0,
+      "rank": 49685.0,
+      "translit": 28592.0,
+      "is_s3": 25047.0,
+      "s1_n": 0.0
+    },
+    "US": {
+      "score": 14118786.0,
+      "rec_rank": 4079493.0,
+      "rec_gap": 1187918.0,
+      "s1_gap": 597106.0,
+      "num_jacc": 485285.0,
+      "name_jw": 343300.0,
+      "addr_tsr": 258773.0,
+      "rec_n_close": 241479.0,
+      "len_rel": 219490.0,
+      "name_tsr": 165974.0,
+      "cos_word": 135530.0,
+      "name_pr": 128256.0,
+      "addr_missing": 73703.0,
+      "cos_addr": 66509.0,
+      "cos_char": 63163.0,
+      "methods": 56719.0,
+      "cos_sk": 55769.0,
+      "rank": 30647.0,
+      "is_s3": 17724.0,
+      "s1_n": 0.0,
+      "translit": 0.0
+    },
+    "India": {
+      "rec_rank": 6309972.0,
+      "score": 5002812.0,
+      "rec_gap": 1493850.0,
+      "num_jacc": 431319.0,
+      "rec_n_close": 207823.0,
+      "name_pr": 207356.0,
+      "name_jw": 199357.0,
+      "len_rel": 180301.0,
+      "addr_tsr": 117761.0,
+      "name_tsr": 116635.0,
+      "s1_gap": 102421.0,
+      "cos_sk": 73897.0,
+      "cos_word": 61500.0,
+      "cos_addr": 48667.0,
+      "cos_char": 47429.0,
+      "methods": 44549.0,
+      "rank": 35378.0,
+      "translit": 33313.0,
+      "addr_missing": 20556.0,
+      "is_s3": 10997.0,
+      "s1_n": 0.0
+    }
+  },
+  "relative_feature_gain_share": {
+    "ALL": 0.4278,
+    "US": 0.2847,
+    "India": 0.5649
+  },
+  "half_split": "val S1 by hash(entity_id, seed=7) % 2: A=0, B=1",
+  "half_sizes": {
+    "B": 221037,
+    "A": 220326
+  },
+  "total_s": 257.6,
+  "peak_rss_gb": 5.29
+}

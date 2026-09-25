@@ -83,6 +83,11 @@ def _drop_cols(X: sp.csr_matrix, keep: np.ndarray) -> sp.csr_matrix:
     return _sorted_csr(X @ D)
 
 
+def _ret(mat: dict, part: int, rows: slice | None = None) -> sp.csr_matrix:
+    X = mat["full"][part] if rows is None else mat["full"][part][rows]
+    return X if mat["keep"] is None else _drop_cols(X, mat["keep"])
+
+
 def learn_country_stopwords(names: list[str], frac: float) -> set[str]:
     from collections import Counter
     df = Counter()
@@ -124,27 +129,34 @@ def build_country(n1: pl.DataFrame, targets: dict[str, pl.DataFrame], cfg: Block
         vals |= set(t["country"].unique().to_list())
     assert len(vals) == 1, f"stopwords/IDF must be learned per country; got country values {sorted(vals)}"
     assert n1.height > 0, "no S1 rows for this country: stopwords cannot be learned from its own data"
+    # memory-lean: text lists are built per method and freed right after vectorizing (same results)
     names = [n1["name_n"].to_list()] + [t["name_n"].to_list() for t in targets.values()]
     stop = learn_country_stopwords([x for p in names for x in p], cfg.stop_df_frac)
     core = [_core(p, stop) for p in names]
-    addrs = [n1["addr_n"].to_list()] + [t["addr_n"].to_list() for t in targets.values()]
+    del names
     mats = {}
-    specs = {
-        "word": (core, dict(analyzer="word", token_pattern=r"\S+"), cfg.word_df_cap),
-        "char": (core, dict(analyzer="char_wb", ngram_range=(3, 3)), cfg.char_df_cap),
-        "sk": ([[skeleton(x) for x in p] for p in core], dict(analyzer="char_wb", ngram_range=(3, 3)), cfg.char_df_cap),
-        "addr": (addrs, dict(analyzer="word", token_pattern=r"\S+"), cfg.addr_df_cap),
-    }
-    for m, (texts, kw, cap) in specs.items():
+
+    def _add(m, texts, kw, cap):
         parts, df, n = _fit(texts, **kw)
         keep = (df <= cap * n)
-        ret = [_drop_cols(P, keep) for P in parts]
-        mats[m] = {"full": parts, "ret": ret, "n_features": int(len(df)), "n_dropped": int((~keep).sum())}
+        # retrieval matrices (full with high-df columns zeroed) are built on demand from "full" + "keep"
+        mats[m] = {"full": parts, "keep": keep if (~keep).any() else None, "n_features": int(len(df)),
+                   "n_dropped": int((~keep).sum())}
+
+    _add("word", core, dict(analyzer="word", token_pattern=r"\S+"), cfg.word_df_cap)
+    _add("char", core, dict(analyzer="char_wb", ngram_range=(3, 3)), cfg.char_df_cap)
+    sk = [[skeleton(x) for x in p] for p in core]
+    del core
+    _add("sk", sk, dict(analyzer="char_wb", ngram_range=(3, 3)), cfg.char_df_cap)
+    del sk
+    addrs = [n1["addr_n"].to_list()] + [t["addr_n"].to_list() for t in targets.values()]
+    _add("addr", addrs, dict(analyzer="word", token_pattern=r"\S+"), cfg.addr_df_cap)
+    del addrs
     return mats, sorted(stop)
 
 
 def block_country(n1: pl.DataFrame, targets: dict[str, pl.DataFrame], cfg: BlockConfig, keep_all: bool = False,
-                  timings: dict | None = None):
+                  timings: dict | None = None, spill_dir=None):
     """Candidates for one country. n1/targets rows must already be filtered to that country.
 
     Returns a polars frame (s1_idx, src, cand_idx, cos_*, methods, score) with ``idx`` columns
@@ -153,6 +165,7 @@ def block_country(n1: pl.DataFrame, targets: dict[str, pl.DataFrame], cfg: Block
     mats, stop = build_country(n1, targets, cfg)
     if timings is not None:
         timings["vectorize_s"] = timings.get("vectorize_s", 0) + time.time() - t0
+    n_spilled = [0]
     s1_ids = n1["idx"].to_numpy()
     e1 = (n1["addr_n"] == "").to_numpy()
     out = []
@@ -162,27 +175,30 @@ def block_country(n1: pl.DataFrame, targets: dict[str, pl.DataFrame], cfg: Block
         e2 = (tdf["addr_n"] == "").to_numpy()
         if tdf.height == 0 or n1.height == 0:
             continue
-        BT = {m: mats[m]["ret"][si].T.tocsr() for m in cfg.methods}
         rev_keys = rev_bits = None
-        if cfg.reverse_top > 0:
-            rk, rb = [], []
-            for m in cfg.methods:
-                QT = mats[m]["ret"][0].T.tocsr()
-                T = mats[m]["ret"][si]
+        BT, rk, rb = {}, [], []
+        for m in cfg.methods:
+            T = _ret(mats[m], si)
+            if cfg.reverse_top > 0:
+                QT = _ret(mats[m], 0).T.tocsr()
                 for r0 in range(0, T.shape[0], 4 * cfg.chunk_rows):
                     R = sp_matmul_topn(T[r0:r0 + 4 * cfg.chunk_rows], QT, top_n=cfg.reverse_top,
                                        threshold=cfg.threshold, n_threads=cfg.n_threads).tocoo()
                     rk.append(R.col.astype(np.int64) * tdf.height + (R.row.astype(np.int64) + r0))
                     rb.append(np.full(R.nnz, 16, dtype=np.int8))
                 del QT
+            BT[m] = T.T.tocsr()
+            del T
+        if cfg.reverse_top > 0:
             rev_keys = np.concatenate(rk)
             o = np.argsort(rev_keys, kind="stable")
             rev_keys, rev_bits = rev_keys[o], np.concatenate(rb)[o]
+        del rk, rb
         for c0 in range(0, n1.height, cfg.chunk_rows):
             c1 = min(n1.height, c0 + cfg.chunk_rows)
             keys, bits = [], []
             for m in cfg.methods:
-                Q = mats[m]["ret"][0][c0:c1]
+                Q = _ret(mats[m], 0, slice(c0, c1))
                 R = sp_matmul_topn(Q, BT[m], top_n=cfg.m_per_method, threshold=cfg.threshold,
                                    n_threads=cfg.n_threads).tocoo()
                 keys.append((R.row.astype(np.int64) + c0) * tdf.height + R.col.astype(np.int64))
@@ -213,14 +229,24 @@ def block_country(n1: pl.DataFrame, targets: dict[str, pl.DataFrame], cfg: Block
             if not keep_all:
                 df = (df.with_columns(pl.col("score").rank("ordinal", descending=True).over("s1_idx").alias("rank"))
                       .filter(pl.col("rank") <= cfg.k_max).with_columns(pl.col("rank").cast(pl.Int16)))
-            out.append(df)
+            if spill_dir is not None:
+                from pathlib import Path as _P
+                _P(spill_dir).mkdir(parents=True, exist_ok=True)
+                df.write_parquet(_P(spill_dir) / f"part_s{si + 1}_{c0:09d}.parquet")
+                n_spilled[0] += df.height
+            else:
+                out.append(df)
+        del BT, rev_keys, rev_bits
     if timings is not None:
         timings["retrieve_score_s"] = timings.get("retrieve_score_s", 0) + time.time() - t1
-    return (pl.concat(out) if out else None), stop, {m: (mats[m]["n_features"], mats[m]["n_dropped"]) for m in mats}
+    feats_info = {m: (mats[m]["n_features"], mats[m]["n_dropped"]) for m in mats}
+    if spill_dir is not None:
+        return n_spilled[0], stop, feats_info
+    return (pl.concat(out) if out else None), stop, feats_info
 
 
 def run_blocking(n1: pl.DataFrame, n2: pl.DataFrame, n3: pl.DataFrame, cfg: BlockConfig, keep_all=False,
-                 s1_subset: np.ndarray | None = None, log=print, data_tag: str = "unspecified"):
+                 s1_subset: np.ndarray | None = None, log=print, data_tag: str = "unspecified", spill_dir=None):
     """Loop over country values of S1 (open set). Targets with a country value absent from S1
     can never be candidates (all true pairs share the country value)."""
     res, info, timings = [], {}, {}
@@ -228,7 +254,17 @@ def run_blocking(n1: pl.DataFrame, n2: pl.DataFrame, n3: pl.DataFrame, cfg: Bloc
         a = n1.filter(pl.col("country") == country)
         t = {"s2": n2.filter(pl.col("country") == country), "s3": n3.filter(pl.col("country") == country)}
         t0 = time.time()
-        cand, stop, feats = block_country(a, t, cfg, keep_all=keep_all, timings=timings)
+        cand, stop, feats = block_country(a, t, cfg, keep_all=keep_all, timings=timings,
+                                          spill_dir=None if spill_dir is None else f"{spill_dir}/{country}")
+        if spill_dir is not None:
+            info[country] = {"s1": a.height, "s2": t["s2"].height, "s3": t["s3"].height, "n_stopwords": len(stop),
+                             "stopwords_sample": stop[:40],
+                             "stopwords_source": f"{data_tag}: country={country!r} S1+S2+S3 names of this run only "
+                                                 f"({a.height + t['s2'].height + t['s3'].height} docs)",
+                             "seconds": round(time.time() - t0, 1), "pairs": cand}
+            log(f"[blocking] {country}: {info[country]['seconds']}s pairs={cand} (spilled)")
+            del a, t
+            continue
         if cand is not None:
             if s1_subset is not None:
                 cand = cand.filter(pl.col("s1_idx").is_in(s1_subset))
