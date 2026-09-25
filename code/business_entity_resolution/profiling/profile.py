@@ -1,11 +1,26 @@
-import duckdb, json, time, os
+import argparse, duckdb, json, time, os, re, shutil, subprocess
+ap=argparse.ArgumentParser(description='Read-only data profile of the AMLC 2026 entity-resolution dataset')
+ap.add_argument('--data-dir',default='dataset',help='directory containing train/ and test/ (default: %(default)s)')
+ap.add_argument('--output-dir',default='reports/data_quality',help='where profile.json is written (default: %(default)s)')
+ap.add_argument('--tmp-dir',default=None,help='duckdb database + spill directory (default: <output-dir>/tmp)')
+ap.add_argument('--validator',default=None,help='path to validate_submission.py (default: <data-dir>/../validate_submission.py)')
+ap.add_argument('--memory-limit',default='3GB'); ap.add_argument('--threads',type=int,default=4)
+ap.add_argument('--keep-db',action='store_true',help='keep the temporary duckdb file afterwards')
+A=ap.parse_args()
 T0=time.time()
-D='/workspace/amlc/dataset/dataset'
-P='/workspace/amlc/profile'
-DB=P+'/tmp/prof.duckdb'
+D=os.path.abspath(A.data_dir); P=os.path.abspath(A.output_dir)
+TMP=os.path.abspath(A.tmp_dir or os.path.join(P,'tmp'))
+VAL=os.path.abspath(A.validator or os.path.join(D,os.pardir,'validate_submission.py'))
+os.makedirs(P,exist_ok=True); os.makedirs(os.path.join(TMP,'spill'),exist_ok=True)
+DB=os.path.join(TMP,'prof.duckdb')
 if os.path.exists(DB): os.remove(DB)
 c=duckdb.connect(DB)
-c.execute("SET memory_limit='3GB'; SET temp_directory='/workspace/amlc/profile/tmp/spill'; SET threads=4; SET preserve_insertion_order=false;")
+c.execute(f"SET memory_limit='{A.memory_limit}'; SET temp_directory='{os.path.join(TMP,'spill')}'; SET threads={A.threads}; SET preserve_insertion_order=false;")
+# scripts measured in business_name (RE2 Unicode script names)
+SCRIPTS=['Devanagari','Bengali','Gurmukhi','Gujarati','Oriya','Tamil','Telugu','Kannada','Malayalam',
+         'Han','Arabic','Cyrillic','Hangul','Hiragana','Katakana','Greek','Thai','Hebrew']
+NONLATIN=r"regexp_matches(business_name,'[^\p{Latin}\P{L}]')"
+ANY_LISTED="regexp_matches(business_name,'"+'|'.join(r'\p{%s}'%s for s in SCRIPTS)+"')"
 R={}
 def q(s): return c.execute(s).fetchall()
 def q1(s): return c.execute(s).fetchone()
@@ -24,7 +39,7 @@ for t,p in files.items():
 c.execute(f"CREATE TABLE gt AS SELECT * FROM {rd(gt)}")
 R['wc_l_lines_incl_header']={}
 for t,p in list(files.items())+[('gt',gt)]:
-    R['wc_l_lines_incl_header'][t]=int(os.popen(f"wc -l < '{p}'").read())
+    R['wc_l_lines_incl_header'][t]=int(subprocess.run(['wc','-l',p],capture_output=True,text=True,check=True).stdout.split()[0])
 # 1 counts / dups / columns
 R['files']={}
 for t in list(files)+['gt']:
@@ -51,10 +66,23 @@ for t in list(files)+['gt']:
                               count(business_name) FROM {t}""")
         info['names_nonlatin_letter']={'count':nl,'rate_of_nonnull_names':round(nl/nm,6)}
         info['names_devanagari']={'count':dv,'rate_of_nonnull_names':round(dv/nm,6)}
-        info['name_nonlatin_top_scripts']={}
-        for scr in ['Devanagari','Han','Arabic','Cyrillic','Hangul','Hiragana','Katakana','Greek','Thai','Hebrew','Bengali','Tamil','Telugu','Gujarati','Gurmukhi','Kannada','Malayalam']:
+        # (a) overlapping "contains" counts: a name with two scripts counts in both
+        cont={}
+        for scr in SCRIPTS:
             k=q1(rf"SELECT count(*) FROM {t} WHERE regexp_matches(business_name,'\p{{{scr}}}')")[0]
-            if k: info['name_nonlatin_top_scripts'][scr]=k
+            if k: cont[scr]=k
+        cont['other_nonlatin']=q1(f"SELECT count(*) FROM {t} WHERE {NONLATIN} AND NOT {ANY_LISTED}")[0]
+        info['name_script_contains_counts']={'note':'overlapping: a name containing several scripts is counted once per script; other_nonlatin = non-Latin names containing none of the listed scripts','counts':cont}
+        # (b) exclusive primary-script buckets: each non-Latin name assigned to the listed script with most chars (ties -> list order), else other_nonlatin
+        cnts=','.join(rf"length(business_name)-length(regexp_replace(business_name,'\p{{{s}}}','','g'))" for s in SCRIPTS)
+        lab="['"+"','".join(SCRIPTS)+"']"
+        rows=q(f"""SELECT CASE WHEN list_max(cs)=0 THEN 'other_nonlatin' ELSE {lab}[list_position(cs,list_max(cs))] END b, count(*)
+                  FROM (SELECT [{cnts}] cs FROM {t} WHERE {NONLATIN}) GROUP BY 1""")
+        prim={s:0 for s in SCRIPTS}; prim['other_nonlatin']=0
+        for b_,k in rows: prim[b_]=k
+        prim={k:v for k,v in prim.items() if v or k=='other_nonlatin'}
+        info['name_script_primary_counts']={'note':'exclusive: each non-Latin name counted once, under the listed script with the most characters (ties broken by list order); other_nonlatin = none of the listed scripts',
+            'scripts_measured':SCRIPTS,'counts':prim,'sum':sum(prim.values()),'nonlatin_total':nl,'sum_equals_nonlatin_total':sum(prim.values())==nl}
         ls={}
         for col in ['business_name','business_address']:
             r=q1(f"SELECT quantile_disc(length({col}),0.5), quantile_disc(length({col}),0.95), avg(length({col})), max(length({col})), min(length({col})) FROM {t} WHERE {col} IS NOT NULL")
@@ -114,8 +142,8 @@ g['s1_set']={'gt_s1_not_in_train_s1':q1("SELECT count(*) FROM (SELECT DISTINCT s
   'train_s1_not_in_gt':q1("SELECT count(*) FROM (SELECT DISTINCT entity_id id FROM train_s1) ANTI JOIN gt ON id=source1_entity_id")[0]}
 g['s1_set']['identical']= g['s1_set']['gt_s1_not_in_train_s1']==0 and g['s1_set']['train_s1_not_in_gt']==0
 # 8 country agreement
-c.execute("SELECT setseed(0.42)")
-c.execute("CREATE TABLE samp AS SELECT * FROM (SELECT DISTINCT s1,mid FROM gtp) USING SAMPLE reservoir(500000 ROWS) REPEATABLE (42)")
+# deterministic sample: the 500k pairs with the smallest hash(s1,mid)
+c.execute("CREATE TABLE samp AS SELECT s1,mid FROM (SELECT DISTINCT s1,mid FROM gtp) ORDER BY hash(s1,mid), s1, mid LIMIT 500000")
 c.execute("""CREATE TABLE sj AS SELECT p.s1, p.mid, a.country c1, coalesce(b2.country,b3.country) c2, (b2.entity_id IS NOT NULL OR b3.entity_id IS NOT NULL) found
  FROM samp p JOIN (SELECT DISTINCT ON (entity_id) entity_id,country FROM train_s1) a ON a.entity_id=p.s1
  LEFT JOIN (SELECT DISTINCT ON (entity_id) entity_id,country FROM train_s2) b2 ON b2.entity_id=p.mid
@@ -124,12 +152,42 @@ r=q1("""SELECT count(*), count(*) FILTER (WHERE found), count(*) FILTER (WHERE f
   count(*) FILTER (WHERE found AND c1=c2), count(*) FILTER (WHERE found AND lower(trim(c1))=lower(trim(c2))),
   count(*) FILTER (WHERE found AND starts_with(mid,'S2-') AND c1 IS NOT NULL AND c2 IS NOT NULL), count(*) FILTER (WHERE starts_with(mid,'S2-') AND c1=c2),
   count(*) FILTER (WHERE found AND starts_with(mid,'S3-') AND c1 IS NOT NULL AND c2 IS NOT NULL), count(*) FILTER (WHERE starts_with(mid,'S3-') AND c1=c2) FROM sj""")
-g['country_agreement_sample']={'sampled_pairs':r[0],'pairs_with_both_records_found':r[1],'both_country_nonnull':r[2],'exact_equal':r[3],
+g['country_agreement_sample']={'method':'deterministic: 500000 distinct (s1,mid) pairs with smallest hash(s1,mid)','sampled_pairs':r[0],'pairs_with_both_records_found':r[1],'both_country_nonnull':r[2],'exact_equal':r[3],
   'exact_rate_of_both_nonnull':round(r[3]/r[2],6),'case_trim_insensitive_equal':r[4],'ci_rate':round(r[4]/r[2],6),
   'S2_rate':round(r[6]/r[5],6) if r[5] else None,'S3_rate':round(r[8]/r[7],6) if r[7] else None,
   'top_disagreeing_country_pairs':[list(x) for x in q("SELECT c1,c2,count(*) FROM sj WHERE found AND c1<>c2 GROUP BY 1,2 ORDER BY 3 DESC LIMIT 15")]}
 R['ground_truth']=g
+# non-Latin names by country (S2/S3)
+nbc={}
+for t in [x for x in files if not x.endswith('s1')]:
+    r=q(rf"""SELECT country, count(*), count(*) FILTER (WHERE {NONLATIN}),
+      count(*) FILTER (WHERE {NONLATIN} AND NOT {ANY_LISTED})
+      FROM {t} GROUP BY 1 ORDER BY 1""")
+    nbc[t]={k:{'rows':n,'nonlatin':x,'nonlatin_rate':round(x/n,6),'nonlatin_other_script':o} for k,n,x,o in r}
+R['nonlatin_by_country']=nbc
+# scoring script facts (read-only)
+vs={'path':VAL,'exists':os.path.isfile(VAL)}
+if vs['exists']:
+    v=open(VAL,encoding='utf-8').read(); vl=v.lower()
+    vs['mentions']={k:(k in vl) for k in ['f0.5','f_0.5','fbeta','f-beta','precision','recall','singleton','ground_truth','ground truth']}
+    vs['computes_score']=any(k in vl for k in ['f0.5','fbeta','precision','recall'])
+    vs['reads_ground_truth_file']='ground_truth.tsv' in vl
+    for k in ['MATCHING_HEADER','CANDIDATE_HEADER','DELIM']:
+        m=re.search(rf'^{k}\s*=\s*(.+)$',v,re.M); vs[k]=m.group(1).strip() if m else None
+    vs['rules']=[
+     'Format validator only: never reads the ground truth and never computes a score',
+     'TAB-separated; header exactly source1_entity_id<TAB>matched_entity_ids (case-insensitive after strip)',
+     'Exactly one row per test_source1 S1 ID: none missing, none extra, no duplicate rows',
+     'Empty matched list = no match (singleton); IDs comma-separated',
+     'Only S2-/S3- prefixed IDs; no S1 self-matches; no duplicate IDs within a list; file must be UTF-8',
+     '--check-ids (optional) flags IDs not in test S2/S3; docstring: a nonexistent ID only lowers the score, never rejects',
+     'candidate_pairs.tsv (header source1_entity_id<TAB>candidate_entity_ids) optional here, same checks; warning (never failure) if matches are not a subset of candidates; docstring says it is expected in the final zip']
+R['scoring_script']=vs
+R['params']={'data_dir':D,'output_dir':P,'tmp_dir':TMP,'memory_limit':A.memory_limit,'threads':A.threads}
+c.close()
+if not A.keep_db:
+    os.remove(DB); shutil.rmtree(os.path.join(TMP,'spill'),ignore_errors=True)
 R['timing_s']=timing; R['runtime_s']=round(time.time()-T0,1)
 R['duckdb_version']=duckdb.__version__
-json.dump(R,open(P+'/profile.json','w'),indent=1,ensure_ascii=False)
+json.dump(R,open(os.path.join(P,'profile.json'),'w'),indent=1,ensure_ascii=False)
 print('TOTAL',R['runtime_s'])

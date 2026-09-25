@@ -65,7 +65,41 @@
     "count": 0,
     "rate_of_nonnull_names": 0.0
    },
-   "name_nonlatin_top_scripts": {},
+   "name_script_contains_counts": {
+    "note": "overlapping: a name containing several scripts is counted once per script; other_nonlatin = non-Latin names containing none of the listed scripts",
+    "counts": {
+     "other_nonlatin": 0
+    }
+   },
+   "name_script_primary_counts": {
+    "note": "exclusive: each non-Latin name counted once, under the listed script with the most characters (ties broken by list order); other_nonlatin = none of the listed scripts",
+    "scripts_measured": [
+     "Devanagari",
+     "Bengali",
+     "Gurmukhi",
+     "Gujarati",
+     "Oriya",
+     "Tamil",
+     "Telugu",
+     "Kannada",
+     "Malayalam",
+     "Han",
+     "Arabic",
+     "Cyrillic",
+     "Hangul",
+     "Hiragana",
+     "Katakana",
+     "Greek",
+     "Thai",
+     "Hebrew"
+    ],
+    "counts": {
+     "other_nonlatin": 0
+    },
+    "sum": 0,
+    "nonlatin_total": 0,
+    "sum_equals_nonlatin_total": true
+   },
    "length_stats": {
     "business_name": {
      "median_chars": 24,
@@ -141,15 +175,58 @@
     "count": 269424,
     "rate_of_nonnull_names": 0.053514
    },
-   "name_nonlatin_top_scripts": {
-    "Devanagari": 269424,
-    "Bengali": 30723,
-    "Tamil": 33781,
-    "Telugu": 39323,
-    "Gujarati": 30929,
-    "Gurmukhi": 6688,
-    "Kannada": 37211,
-    "Malayalam": 18773
+   "name_script_contains_counts": {
+    "note": "overlapping: a name containing several scripts is counted once per script; other_nonlatin = non-Latin names containing none of the listed scripts",
+    "counts": {
+     "Devanagari": 269424,
+     "Bengali": 30723,
+     "Gurmukhi": 6688,
+     "Gujarati": 30929,
+     "Oriya": 7493,
+     "Tamil": 33781,
+     "Telugu": 39323,
+     "Kannada": 37211,
+     "Malayalam": 18773,
+     "other_nonlatin": 0
+    }
+   },
+   "name_script_primary_counts": {
+    "note": "exclusive: each non-Latin name counted once, under the listed script with the most characters (ties broken by list order); other_nonlatin = none of the listed scripts",
+    "scripts_measured": [
+     "Devanagari",
+     "Bengali",
+     "Gurmukhi",
+     "Gujarati",
+     "Oriya",
+     "Tamil",
+     "Telugu",
+     "Kannada",
+     "Malayalam",
+     "Han",
+     "Arabic",
+     "Cyrillic",
+     "Hangul",
+     "Hiragana",
+     "Katakana",
+     "Greek",
+     "Thai",
+     "Hebrew"
+    ],
+    "counts": {
+     "Devanagari": 269424,
+     "Bengali": 30723,
+     "Gurmukhi": 6688,
+     "Gujarati": 30929,
+     "Oriya": 7493,
+     "Tamil": 33781,
+     "Telugu": 39323,
+     "Kannada": 37211,
+     "Malayalam": 18773,
+     "other_nonlatin": 0
+    },
+    "sum": 474345,
+    "nonlatin_total": 474345,
+    "sum_equals_nonlatin_total": true
    },
    "length_stats": {
     "business_name": {
@@ -226,15 +303,58 @@
     "count": 158003,
     "rate_of_nonnull_names": 0.029893
    },
-   "name_nonlatin_top_scripts": {
-    "Devanagari": 158003,
-    "Bengali": 18144,
-    "Tamil": 19790,
-    "Telugu": 23033,
-    "Gujarati": 18020,
-    "Gurmukhi": 4106,
-    "Kannada": 21995,
-    "Malayalam": 11116
+   "name_script_contains_counts": {
+    "note": "overlapping: a name containing several scripts is counted once per script; other_nonlatin = non-Latin names containing none of the listed scripts",
+    "counts": {
+     "Devanagari": 158003,
+     "Bengali": 18144,
+     "Gurmukhi": 4106,
+     "Gujarati": 18020,
+     "Oriya": 4317,
+     "Tamil": 19790,
+     "Telugu": 23033,
+     "Kannada": 21995,
+     "Malayalam": 11116,
+     "other_nonlatin": 0
+    }
+   },
+   "name_script_primary_counts": {
+    "note": "exclusive: each non-Latin name counted once, under the listed script with the most characters (ties broken by list order); other_nonlatin = none of the listed scripts",
+    "scripts_measured": [
+     "Devanagari",
+     "Bengali",
+     "Gurmukhi",
+     "Gujarati",
+     "Oriya",
+     "Tamil",
+     "Telugu",
+     "Kannada",
+     "Malayalam",
+     "Han",
+     "Arabic",
+     "Cyrillic",
+     "Hangul",
+     "Hiragana",
+     "Katakana",
+     "Greek",
+     "Thai",
+     "Hebrew"
+    ],
+    "counts": {
+     "Devanagari": 158003,
+     "Bengali": 18144,
+     "Gurmukhi": 4106,
+     "Gujarati": 18020,
+     "Oriya": 4317,
+     "Tamil": 19790,
+     "Telugu": 23033,
+     "Kannada": 21995,
+     "Malayalam": 11116,
+     "other_nonlatin": 0
+    },
+    "sum": 278524,
+    "nonlatin_total": 278524,
+    "sum_equals_nonlatin_total": true
    },
    "length_stats": {
     "business_name": {
@@ -315,7 +435,41 @@
     "count": 0,
     "rate_of_nonnull_names": 0.0
    },
-   "name_nonlatin_top_scripts": {},
+   "name_script_contains_counts": {
+    "note": "overlapping: a name containing several scripts is counted once per script; other_nonlatin = non-Latin names containing none of the listed scripts",
+    "counts": {
+     "other_nonlatin": 0
+    }
+   },
+   "name_script_primary_counts": {
+    "note": "exclusive: each non-Latin name counted once, under the listed script with the most characters (ties broken by list order); other_nonlatin = none of the listed scripts",
+    "scripts_measured": [
+     "Devanagari",
+     "Bengali",
+     "Gurmukhi",
+     "Gujarati",
+     "Oriya",
+     "Tamil",
+     "Telugu",
+     "Kannada",
+     "Malayalam",
+     "Han",
+     "Arabic",
+     "Cyrillic",
+     "Hangul",
+     "Hiragana",
+     "Katakana",
+     "Greek",
+     "Thai",
+     "Hebrew"
+    ],
+    "counts": {
+     "other_nonlatin": 0
+    },
+    "sum": 0,
+    "nonlatin_total": 0,
+    "sum_equals_nonlatin_total": true
+   },
    "length_stats": {
     "business_name": {
      "median_chars": 24,
@@ -395,15 +549,58 @@
     "count": 309103,
     "rate_of_nonnull_names": 0.063247
    },
-   "name_nonlatin_top_scripts": {
-    "Devanagari": 309103,
-    "Bengali": 35546,
-    "Tamil": 38953,
-    "Telugu": 45171,
-    "Gujarati": 35321,
-    "Gurmukhi": 7903,
-    "Kannada": 43906,
-    "Malayalam": 22033
+   "name_script_contains_counts": {
+    "note": "overlapping: a name containing several scripts is counted once per script; other_nonlatin = non-Latin names containing none of the listed scripts",
+    "counts": {
+     "Devanagari": 309103,
+     "Bengali": 35546,
+     "Gurmukhi": 7903,
+     "Gujarati": 35321,
+     "Oriya": 8670,
+     "Tamil": 38953,
+     "Telugu": 45171,
+     "Kannada": 43906,
+     "Malayalam": 22033,
+     "other_nonlatin": 0
+    }
+   },
+   "name_script_primary_counts": {
+    "note": "exclusive: each non-Latin name counted once, under the listed script with the most characters (ties broken by list order); other_nonlatin = none of the listed scripts",
+    "scripts_measured": [
+     "Devanagari",
+     "Bengali",
+     "Gurmukhi",
+     "Gujarati",
+     "Oriya",
+     "Tamil",
+     "Telugu",
+     "Kannada",
+     "Malayalam",
+     "Han",
+     "Arabic",
+     "Cyrillic",
+     "Hangul",
+     "Hiragana",
+     "Katakana",
+     "Greek",
+     "Thai",
+     "Hebrew"
+    ],
+    "counts": {
+     "Devanagari": 309103,
+     "Bengali": 35546,
+     "Gurmukhi": 7903,
+     "Gujarati": 35321,
+     "Oriya": 8670,
+     "Tamil": 38953,
+     "Telugu": 45171,
+     "Kannada": 43906,
+     "Malayalam": 22033,
+     "other_nonlatin": 0
+    },
+    "sum": 546606,
+    "nonlatin_total": 546606,
+    "sum_equals_nonlatin_total": true
    },
    "length_stats": {
     "business_name": {
@@ -484,15 +681,58 @@
     "count": 181068,
     "rate_of_nonnull_names": 0.035627
    },
-   "name_nonlatin_top_scripts": {
-    "Devanagari": 181068,
-    "Bengali": 20872,
-    "Tamil": 22808,
-    "Telugu": 26698,
-    "Gujarati": 20570,
-    "Gurmukhi": 4634,
-    "Kannada": 25832,
-    "Malayalam": 13095
+   "name_script_contains_counts": {
+    "note": "overlapping: a name containing several scripts is counted once per script; other_nonlatin = non-Latin names containing none of the listed scripts",
+    "counts": {
+     "Devanagari": 181068,
+     "Bengali": 20872,
+     "Gurmukhi": 4634,
+     "Gujarati": 20570,
+     "Oriya": 5062,
+     "Tamil": 22808,
+     "Telugu": 26698,
+     "Kannada": 25832,
+     "Malayalam": 13095,
+     "other_nonlatin": 0
+    }
+   },
+   "name_script_primary_counts": {
+    "note": "exclusive: each non-Latin name counted once, under the listed script with the most characters (ties broken by list order); other_nonlatin = none of the listed scripts",
+    "scripts_measured": [
+     "Devanagari",
+     "Bengali",
+     "Gurmukhi",
+     "Gujarati",
+     "Oriya",
+     "Tamil",
+     "Telugu",
+     "Kannada",
+     "Malayalam",
+     "Han",
+     "Arabic",
+     "Cyrillic",
+     "Hangul",
+     "Hiragana",
+     "Katakana",
+     "Greek",
+     "Thai",
+     "Hebrew"
+    ],
+    "counts": {
+     "Devanagari": 181068,
+     "Bengali": 20872,
+     "Gurmukhi": 4634,
+     "Gujarati": 20570,
+     "Oriya": 5062,
+     "Tamil": 22808,
+     "Telugu": 26698,
+     "Kannada": 25832,
+     "Malayalam": 13095,
+     "other_nonlatin": 0
+    },
+    "sum": 320639,
+    "nonlatin_total": 320639,
+    "sum_equals_nonlatin_total": true
    },
    "length_stats": {
     "business_name": {
@@ -689,6 +929,7 @@
    "identical": true
   },
   "country_agreement_sample": {
+   "method": "deterministic: 500000 distinct (s1,mid) pairs with smallest hash(s1,mid)",
    "sampled_pairs": 500000,
    "pairs_with_both_records_found": 500000,
    "both_country_nonnull": 500000,
@@ -701,29 +942,19 @@
    "top_disagreeing_country_pairs": []
   }
  },
- "timing_s": {
-  "load_train_s1": 3.1,
-  "load_train_s2": 2.4,
-  "load_train_s3": 2.8,
-  "load_test_s1": 2.5,
-  "load_test_s2": 4.8,
-  "load_test_s3": 2.8
- },
- "runtime_s": 65.8,
- "duckdb_version": "1.5.5",
  "nonlatin_by_country": {
   "train_s2": {
    "India": {
     "rows": 2017799,
     "nonlatin": 474345,
     "nonlatin_rate": 0.23508,
-    "nonlatin_outside_8_indic_scripts": 7493
+    "nonlatin_other_script": 0
    },
    "US": {
     "rows": 3016817,
     "nonlatin": 0,
     "nonlatin_rate": 0.0,
-    "nonlatin_outside_8_indic_scripts": 0
+    "nonlatin_other_script": 0
    }
   },
   "train_s3": {
@@ -731,13 +962,13 @@
     "rows": 2115547,
     "nonlatin": 278524,
     "nonlatin_rate": 0.131656,
-    "nonlatin_outside_8_indic_scripts": 4317
+    "nonlatin_other_script": 0
    },
    "US": {
     "rows": 3170056,
     "nonlatin": 0,
     "nonlatin_rate": 0.0,
-    "nonlatin_outside_8_indic_scripts": 0
+    "nonlatin_other_script": 0
    }
   },
   "test_s2": {
@@ -745,19 +976,19 @@
     "rows": 703378,
     "nonlatin": 0,
     "nonlatin_rate": 0.0,
-    "nonlatin_outside_8_indic_scripts": 0
+    "nonlatin_other_script": 0
    },
    "India": {
     "rows": 2312565,
     "nonlatin": 546606,
     "nonlatin_rate": 0.236364,
-    "nonlatin_outside_8_indic_scripts": 8670
+    "nonlatin_other_script": 0
    },
    "US": {
     "rows": 1871330,
     "nonlatin": 0,
     "nonlatin_rate": 0.0,
-    "nonlatin_outside_8_indic_scripts": 0
+    "nonlatin_other_script": 0
    }
   },
   "test_s3": {
@@ -765,20 +996,66 @@
     "rows": 731615,
     "nonlatin": 0,
     "nonlatin_rate": 0.0,
-    "nonlatin_outside_8_indic_scripts": 0
+    "nonlatin_other_script": 0
    },
    "India": {
     "rows": 2405000,
     "nonlatin": 320639,
     "nonlatin_rate": 0.133322,
-    "nonlatin_outside_8_indic_scripts": 5062
+    "nonlatin_other_script": 0
    },
    "US": {
     "rows": 1945701,
     "nonlatin": 0,
     "nonlatin_rate": 0.0,
-    "nonlatin_outside_8_indic_scripts": 0
+    "nonlatin_other_script": 0
    }
   }
- }
+ },
+ "scoring_script": {
+  "path": "/workspace/amlc/dataset/validate_submission.py",
+  "exists": true,
+  "mentions": {
+   "f0.5": false,
+   "f_0.5": false,
+   "fbeta": false,
+   "f-beta": false,
+   "precision": false,
+   "recall": false,
+   "singleton": false,
+   "ground_truth": false,
+   "ground truth": true
+  },
+  "computes_score": false,
+  "reads_ground_truth_file": false,
+  "MATCHING_HEADER": "[\"source1_entity_id\", \"matched_entity_ids\"]",
+  "CANDIDATE_HEADER": "[\"source1_entity_id\", \"candidate_entity_ids\"]",
+  "DELIM": "\"\\t\"",
+  "rules": [
+   "Format validator only: never reads the ground truth and never computes a score",
+   "TAB-separated; header exactly source1_entity_id<TAB>matched_entity_ids (case-insensitive after strip)",
+   "Exactly one row per test_source1 S1 ID: none missing, none extra, no duplicate rows",
+   "Empty matched list = no match (singleton); IDs comma-separated",
+   "Only S2-/S3- prefixed IDs; no S1 self-matches; no duplicate IDs within a list; file must be UTF-8",
+   "--check-ids (optional) flags IDs not in test S2/S3; docstring: a nonexistent ID only lowers the score, never rejects",
+   "candidate_pairs.tsv (header source1_entity_id<TAB>candidate_entity_ids) optional here, same checks; warning (never failure) if matches are not a subset of candidates; docstring says it is expected in the final zip"
+  ]
+ },
+ "params": {
+  "data_dir": "/workspace/amlc/dataset/dataset",
+  "output_dir": "/workspace/amlc/profile",
+  "tmp_dir": "/workspace/amlc/profile_tmp",
+  "memory_limit": "3GB",
+  "threads": 4
+ },
+ "timing_s": {
+  "load_train_s1": 3.0,
+  "load_train_s2": 2.4,
+  "load_train_s3": 2.7,
+  "load_test_s1": 2.4,
+  "load_test_s2": 4.6,
+  "load_test_s3": 2.7
+ },
+ "runtime_s": 72.1,
+ "duckdb_version": "1.5.5"
 }
