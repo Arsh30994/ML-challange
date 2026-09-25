@@ -1,0 +1,208 @@
+{
+  "s2_ids_referenced_by_multiple_source1": 0,
+  "s3_ids_referenced_by_multiple_source1": 0,
+  "total_duplicate_reference_ids": 0,
+  "max_source1_entities_per_referenced_id": 1,
+  "source2_unreferenced_count": 1340997,
+  "source3_unreferenced_count": 1340857,
+  "source2_unreferenced_rate": 0.266355,
+  "source3_unreferenced_rate": 0.253681,
+  "source1_singleton_count": 123247,
+  "source1_singleton_rate": 0.055848,
+  "definitions": {
+    "source1_singleton": "train_ground_truth row whose matched_entity_ids is the empty string",
+    "unreferenced_by_ground_truth": "train_source2/3 entity_id not referenced by any valid matched_entity_ids token (NOT a singleton)",
+    "rates": "fractions (0-1); unreferenced rate = unreferenced rows / source rows; singleton rate = singletons / ground-truth rows"
+  },
+  "validation": {
+    "ground_truth_rows": 2206821,
+    "ground_truth_distinct_source1_ids": 2206821,
+    "ground_truth_duplicate_source1_rows": 0,
+    "ground_truth_source1_ids_not_in_train_source1": 0,
+    "train_source1_ids_not_in_ground_truth": 0,
+    "total_matched_tokens": 7638365,
+    "valid_reference_tokens": 7638365,
+    "invalid_reference_tokens": 0,
+    "matched_ids_not_in_train_source2_or_source3": 0,
+    "source1_ids_in_matched_lists": 0,
+    "matched_tokens_equal_to_a_train_source1_id": 0,
+    "duplicate_ids_within_one_list": 0,
+    "empty_or_whitespace_tokens": 0,
+    "tokens_with_surrounding_whitespace": 0,
+    "bad_prefix_tokens": 0,
+    "valid_prefix_tokens_not_found_in_train_source": 0,
+    "issue_counts_by_primary_issue": {
+      "empty_or_whitespace_token": 0,
+      "surrounding_whitespace_in_token": 0,
+      "duplicate_id_within_list": 0,
+      "source1_id_in_matched_list": 0,
+      "bad_prefix": 0,
+      "not_in_train_source2_or_source3": 0
+    },
+    "ground_truth_rows_with_invalid_tokens": 0,
+    "nonempty_rows_without_any_valid_reference": 0,
+    "empty_match_lists": 123247,
+    "empty_lists_preserved_as_singletons": true,
+    "invalid_rows_written": 0,
+    "notes": "Each invalid token is listed once under its highest-precedence issue (empty > whitespace > duplicate > source1 > bad_prefix > not_found). Duplicate tokens: the first occurrence stays a valid reference, repeats are flagged. Invalid tokens are excluded from all reference counts.",
+    "all_checks_passed": true,
+    "singleton_preservation": {
+      "raw_empty_match_list_count": 123247,
+      "source1_singleton_count": 123247,
+      "raw_count_equals_singleton_count": true,
+      "singleton_ids_with_any_token_count": 0,
+      "singleton_ids_with_any_token_examples": [],
+      "singleton_ids_absent_from_reference_counts": true,
+      "passed": true,
+      "method": "raw csv-module read of train_ground_truth.tsv, independent of the pandas parsing path"
+    },
+    "malformed_rows_total": 0,
+    "malformed_rows_by_file": {
+      "train_source1": 0,
+      "train_source2": 0,
+      "train_source3": 0,
+      "train_ground_truth": 0
+    }
+  },
+  "malformed_rows": {
+    "train_source1": {
+      "expected_fields": 4,
+      "header_fields": 4,
+      "raw_data_lines": 2206821,
+      "malformed_row_count": 0,
+      "rows_with_too_few_fields": 0,
+      "rows_with_too_many_fields": 0,
+      "example_line_numbers": [],
+      "handling": "too-few-field rows: missing fields read as empty strings; too-many-field rows: skipped by the pandas parser (excluded from all counts)"
+    },
+    "train_source2": {
+      "expected_fields": 4,
+      "header_fields": 4,
+      "raw_data_lines": 5034616,
+      "malformed_row_count": 0,
+      "rows_with_too_few_fields": 0,
+      "rows_with_too_many_fields": 0,
+      "example_line_numbers": [],
+      "handling": "too-few-field rows: missing fields read as empty strings; too-many-field rows: skipped by the pandas parser (excluded from all counts)"
+    },
+    "train_source3": {
+      "expected_fields": 4,
+      "header_fields": 4,
+      "raw_data_lines": 5285603,
+      "malformed_row_count": 0,
+      "rows_with_too_few_fields": 0,
+      "rows_with_too_many_fields": 0,
+      "example_line_numbers": [],
+      "handling": "too-few-field rows: missing fields read as empty strings; too-many-field rows: skipped by the pandas parser (excluded from all counts)"
+    },
+    "train_ground_truth": {
+      "expected_fields": 2,
+      "header_fields": 2,
+      "raw_data_lines": 2206821,
+      "malformed_row_count": 0,
+      "rows_with_too_few_fields": 0,
+      "rows_with_too_many_fields": 0,
+      "example_line_numbers": [],
+      "handling": "too-few-field rows: missing fields read as empty strings; too-many-field rows: skipped by the pandas parser (excluded from all counts)"
+    }
+  },
+  "check1_details": {
+    "s2_distinct_referenced_ids": 3693619,
+    "s2_max_source1_per_id": 1,
+    "s2_multiplicity_distribution": {
+      "1": 3693619
+    },
+    "s3_distinct_referenced_ids": 3944746,
+    "s3_max_source1_per_id": 1,
+    "s3_multiplicity_distribution": {
+      "1": 3944746
+    }
+  },
+  "unreferenced_by_ground_truth_details": {
+    "source2": {
+      "source": "source2",
+      "total_rows": 5034616,
+      "distinct_entity_ids": 5034616,
+      "duplicate_entity_id_rows": 0,
+      "noncanonical_entity_ids": 0,
+      "referenced_distinct_ids": 3693619,
+      "unreferenced_count": 1340997,
+      "unreferenced_distinct_ids": 1340997,
+      "unreferenced_rate": 0.266355,
+      "unreferenced_pct": 26.6355,
+      "missing_business_name_count": 0,
+      "missing_business_address_count": 3783,
+      "missing_country_count": 0,
+      "missing_business_name_rate": 0.0,
+      "missing_business_address_rate": 0.002821,
+      "missing_country_rate": 0.0,
+      "business_name_len_min": 2,
+      "business_name_len_median": 28.0,
+      "business_name_len_mean": 28.634,
+      "business_name_len_p95": 44.0,
+      "business_name_len_max": 104,
+      "business_address_len_min": 9,
+      "business_address_len_median": 38.0,
+      "business_address_len_mean": 48.256,
+      "business_address_len_p95": 97.0,
+      "business_address_len_max": 249,
+      "country_distribution": {
+        "US": 803743,
+        "India": 537254
+      }
+    },
+    "source3": {
+      "source": "source3",
+      "total_rows": 5285603,
+      "distinct_entity_ids": 5285603,
+      "duplicate_entity_id_rows": 0,
+      "noncanonical_entity_ids": 0,
+      "referenced_distinct_ids": 3944746,
+      "unreferenced_count": 1340857,
+      "unreferenced_distinct_ids": 1340857,
+      "unreferenced_rate": 0.253681,
+      "unreferenced_pct": 25.3681,
+      "missing_business_name_count": 0,
+      "missing_business_address_count": 4082,
+      "missing_country_count": 0,
+      "missing_business_name_rate": 0.0,
+      "missing_business_address_rate": 0.003044,
+      "missing_country_rate": 0.0,
+      "business_name_len_min": 2,
+      "business_name_len_median": 28.0,
+      "business_name_len_mean": 28.505,
+      "business_name_len_p95": 44.0,
+      "business_name_len_max": 123,
+      "business_address_len_min": 5,
+      "business_address_len_median": 43.0,
+      "business_address_len_mean": 48.576,
+      "business_address_len_p95": 91.0,
+      "business_address_len_max": 240,
+      "country_distribution": {
+        "US": 804608,
+        "India": 536249
+      }
+    }
+  },
+  "row_counts": {
+    "train_source1": 2206821,
+    "train_source2": 5034616,
+    "train_source3": 5285603,
+    "train_ground_truth": 2206821
+  },
+  "run": {
+    "data_dir": "/workspace/amlc/dataset/dataset",
+    "timings": {
+      "raw_scans_s": 6.1,
+      "load_ids_s": 23.9,
+      "parse_ground_truth_s": 15.3,
+      "validation_s": 13.9,
+      "check1_s": 4.6,
+      "check2_s": 92.7,
+      "total_s": 156.6
+    },
+    "peak_rss_mb": 1433.5,
+    "pandas_version": "3.0.6",
+    "chunksize": 500000
+  }
+}

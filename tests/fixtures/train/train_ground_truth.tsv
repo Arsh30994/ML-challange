@@ -1,0 +1,6 @@
+source1_entity_id	matched_entity_ids
+S1-1	S2-100,S3-200
+S1-2	S2-100,S3-200,S2-103
+S1-3	
+S1-4	S2-102,S2-102,S3-202
+S1-5	S2-999,S1-1,S3-203
