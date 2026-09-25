@@ -1,0 +1,17 @@
+# Challenge data stays out of git
+dataset/
+*.tsv
+!reports/**/*.tsv
+!tests/fixtures/*.tsv
+# Pipeline outputs
+output/
+# macOS metadata
+.DS_Store
+._*
+# Python
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+*.lgb
+*.pkl
