@@ -2,6 +2,7 @@
 dataset/
 *.tsv
 !reports/**/*.tsv
+!tests/fixtures/*.tsv
 # Pipeline outputs
 output/
 # macOS metadata
