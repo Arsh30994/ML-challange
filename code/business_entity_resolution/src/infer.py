@@ -24,7 +24,18 @@ REPO = Path(__file__).resolve().parents[3]
 LOCKED = {"k_per_source": 10, "m_per_method": 30, "reverse_top": 5, "score_floor": 7.966,
           "weights_file": str(REPO / "reports/blocking_baseline/weights.json"),
           "model_file": str(Path(__file__).resolve().parents[1] / "models/v1_model_ALL.txt"),
-          "model_sha256": "cd16c01fc44693a20a09f27ebfc7cf92ad3b707af048ada38961ba2282bea20a", "t": 0.70, "t_empty": 0.70}
+          "model_sha256": "cd16c01fc44693a20a09f27ebfc7cf92ad3b707af048ada38961ba2282bea20a", "t": 0.70, "t_empty": 0.70,
+          "v2_model_file": str(Path(__file__).resolve().parents[1] / "models/v2_model_ALL_f7.966.txt"),
+          "v2_model_sha256": "faa599161b075e2922af4ce324328d730c20cd99be1666068f2d4fbf3a5b4a58"}
+
+
+def check_locked_model(path, digest=None) -> None:
+    """Fail if an in-repo locked model (v1 default or v2 ALL, used by v3) no longer matches its pinned sha256."""
+    p = Path(path).resolve()
+    for key, name in (("model", "v1"), ("v2_model", "v2 ALL")):
+        if p == Path(LOCKED[f"{key}_file"]).resolve():
+            got = digest or sha256(path)
+            assert got == LOCKED[f"{key}_sha256"], f"in-repo {name} model file changed"
 
 
 def sha256(path) -> str:
@@ -76,8 +87,7 @@ def cmd_country(a):
     cand.write_parquet(Path(a.out_dir) / f"cand_{a.country}.parquet")  # blocking output kept for re-scoring
     t1 = time.time()
     log["model_file"] = a.model; log["model_sha256"] = sha256(a.model)
-    if Path(a.model).resolve() == Path(LOCKED["model_file"]).resolve():
-        assert log["model_sha256"] == LOCKED["model_sha256"], "in-repo v1 model file changed"
+    check_locked_model(a.model, log["model_sha256"])
     sc = score_candidates(cand, n1, n2, n3, model_file=a.model)
     del cand
     log["features_predict_s"] = round(time.time() - t1, 1)
@@ -169,8 +179,7 @@ def cmd_valstats(a):
     W = Path("/workspace/amlc/work")
     n1, n2, n3 = (pl.read_parquet(W / f"norm_val_s{n}.parquet") for n in (1, 2, 3))
     cand = pl.read_parquet(W / "candidates_val_k10.parquet").filter(pl.col("score") >= LOCKED["score_floor"])
-    if Path(a.model).resolve() == Path(LOCKED["model_file"]).resolve():
-        assert sha256(a.model) == LOCKED["model_sha256"], "in-repo v1 model file changed"
+    check_locked_model(a.model)
     sc = score_candidates(cand, n1, n2, n3, model_file=a.model)
     pred = decode(sc.select("s1_idx", "src", "cand_idx", "p"), LOCKED["t"], LOCKED["t_empty"])
     s1 = n1.select(pl.col("idx").alias("s1_idx"), "country")
