@@ -31,7 +31,9 @@ def _num_jacc(a: pl.Series, b: pl.Series) -> np.ndarray:
 
 
 def build_features(cand: pl.DataFrame, n1: pl.DataFrame, n2: pl.DataFrame, n3: pl.DataFrame,
-                   chunk: int = 2_000_000) -> pl.DataFrame:
+                   chunk: int = 2_000_000, reduce=None) -> pl.DataFrame:
+    """reduce: optional callable applied to each finished feature chunk (e.g. predict and keep only ids + p),
+    so the full feature table is never held in memory."""
     c = cand.with_columns(
         (pl.col("score").max().over("s1_idx", "src") - pl.col("score")).alias("s1_gap"),
         pl.len().over("s1_idx", "src").cast(pl.Float32).alias("s1_n"),
@@ -61,5 +63,10 @@ def build_features(cand: pl.DataFrame, n1: pl.DataFrame, n2: pl.DataFrame, n3: p
              / pl.max_horizontal(pl.col("n_a").str.len_chars(), pl.col("n_b").str.len_chars(), pl.lit(1)))
             .cast(pl.Float32).alias("len_rel"),
         ).drop("n_a", "n_b", "a_a", "a_b")
+        if reduce is not None:
+            out.append(reduce(x.with_columns(pl.col(FEATURES + ["len_rel"]).cast(pl.Float32))))
+            continue
         out.append(x)
+    if reduce is not None:
+        return pl.concat(out)
     return pl.concat(out).with_columns(pl.col(FEATURES + ["len_rel"]).cast(pl.Float32))

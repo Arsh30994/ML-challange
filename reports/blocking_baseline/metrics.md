@@ -78,3 +78,14 @@ score >= 8.885 gives 0.9745 with 8.0. There is a cliff between score 8.25 and 8.
 empty address scored about 8.37); the address-missing features fixed most of it. Pick the threshold after stage-3 macro F0.5 is measured on both sets.
 Largest remaining gap: Indic-script S2/S3 names (0.85-0.96 pair recall at k=10 against 0.986 for Latin), mostly generic transliterated
 names with short or empty addresses.
+
+## Reviewer checks
+- Reverse top-5 retrieval cannot push an S1 past k per source: reverse pairs join the union before the per-(S1, source)
+  top-k cut. Measured at k=10: max 10 S2 and 10 S3 per S1 in candidates_val_k10.parquet (max rank 10, 0 duplicate pairs) and
+  in candidate_pairs_val_k10.tsv (max 10 S2- and 10 S3- IDs per row). 4,418,191 of the kept pairs carry the reverse bit; 196,019 were found only by reverse retrieval.
+- Score-floor provenance: the floors 7.966 / 8.885 / 9.584 belong to the blocking LR in weights.json (fit on the train-side tuning
+  union, M=30 + reverse top-5, features = 4 cosines + addr_missing + 3 interactions, intercept -14.1787). They are
+  log-odds cuts at p = 0.002 / 0.005 / 0.01 under that fit; they were NOT tuned on validation. If the blocking LR is refit for any
+  reason, the floor must be re-tuned on validation rather than reusing these numbers.
+- Stopwords are learned per country value from the rows of the current run only (build_country asserts a single country
+  value and at least one S1 row). For test, France gets its own list from test S1+S2+S3 (see reports/loco_check/test_stopwords.json).
