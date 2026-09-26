@@ -1,0 +1,454 @@
+{
+ "floor": "7.966",
+ "grid_t": [
+  0.4,
+  0.98,
+  0.02
+ ],
+ "models": {
+  "v1": {
+   "tuned_on_pooled_A": {
+    "t": 0.9,
+    "t_empty": 0.92,
+    "A": 0.94882,
+    "B_pooled": {
+     "macro_f05": 0.94907,
+     "nonsingleton_f05": 0.95076,
+     "singleton_acc": 0.9206,
+     "pair_precision": 0.98588,
+     "pair_recall": 0.89647,
+     "n_s1": 221037,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_India": {
+     "macro_f05": 0.93429,
+     "nonsingleton_f05": 0.93542,
+     "singleton_acc": 0.91526,
+     "pair_precision": 0.98273,
+     "pair_recall": 0.87013,
+     "n_s1": 88171,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_US": {
+     "macro_f05": 0.95887,
+     "nonsingleton_f05": 0.96095,
+     "singleton_acc": 0.92412,
+     "pair_precision": 0.98789,
+     "pair_recall": 0.91398,
+     "n_s1": 132866,
+     "t": 0.9,
+     "t_empty": 0.92
+    }
+   },
+   "tuned_on_India_A": {
+    "t": 0.9,
+    "t_empty": 0.92,
+    "A": 0.93401,
+    "B_pooled": {
+     "macro_f05": 0.94907,
+     "nonsingleton_f05": 0.95076,
+     "singleton_acc": 0.9206,
+     "pair_precision": 0.98588,
+     "pair_recall": 0.89647,
+     "n_s1": 221037,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_India": {
+     "macro_f05": 0.93429,
+     "nonsingleton_f05": 0.93542,
+     "singleton_acc": 0.91526,
+     "pair_precision": 0.98273,
+     "pair_recall": 0.87013,
+     "n_s1": 88171,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_US": {
+     "macro_f05": 0.95887,
+     "nonsingleton_f05": 0.96095,
+     "singleton_acc": 0.92412,
+     "pair_precision": 0.98789,
+     "pair_recall": 0.91398,
+     "n_s1": 132866,
+     "t": 0.9,
+     "t_empty": 0.92
+    }
+   },
+   "tuned_on_US_A": {
+    "t": 0.9,
+    "t_empty": 0.92,
+    "A": 0.95876,
+    "B_pooled": {
+     "macro_f05": 0.94907,
+     "nonsingleton_f05": 0.95076,
+     "singleton_acc": 0.9206,
+     "pair_precision": 0.98588,
+     "pair_recall": 0.89647,
+     "n_s1": 221037,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_India": {
+     "macro_f05": 0.93429,
+     "nonsingleton_f05": 0.93542,
+     "singleton_acc": 0.91526,
+     "pair_precision": 0.98273,
+     "pair_recall": 0.87013,
+     "n_s1": 88171,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_US": {
+     "macro_f05": 0.95887,
+     "nonsingleton_f05": 0.96095,
+     "singleton_acc": 0.92412,
+     "pair_precision": 0.98789,
+     "pair_recall": 0.91398,
+     "n_s1": 132866,
+     "t": 0.9,
+     "t_empty": 0.92
+    }
+   },
+   "at_t0.90_te0.92": {
+    "B_pooled": {
+     "macro_f05": 0.94907,
+     "nonsingleton_f05": 0.95076,
+     "singleton_acc": 0.9206,
+     "pair_precision": 0.98588,
+     "pair_recall": 0.89647,
+     "n_s1": 221037,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_India": {
+     "macro_f05": 0.93429,
+     "nonsingleton_f05": 0.93542,
+     "singleton_acc": 0.91526,
+     "pair_precision": 0.98273,
+     "pair_recall": 0.87013,
+     "n_s1": 88171,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_US": {
+     "macro_f05": 0.95887,
+     "nonsingleton_f05": 0.96095,
+     "singleton_acc": 0.92412,
+     "pair_precision": 0.98789,
+     "pair_recall": 0.91398,
+     "n_s1": 132866,
+     "t": 0.9,
+     "t_empty": 0.92
+    }
+   }
+  },
+  "v2all": {
+   "tuned_on_pooled_A": {
+    "t": 0.66,
+    "t_empty": 0.8,
+    "A": 0.95044,
+    "B_pooled": {
+     "macro_f05": 0.95062,
+     "nonsingleton_f05": 0.95062,
+     "singleton_acc": 0.95078,
+     "pair_precision": 0.9866,
+     "pair_recall": 0.89988,
+     "n_s1": 221037,
+     "t": 0.66,
+     "t_empty": 0.8
+    },
+    "B_India": {
+     "macro_f05": 0.93542,
+     "nonsingleton_f05": 0.93501,
+     "singleton_acc": 0.94229,
+     "pair_precision": 0.98261,
+     "pair_recall": 0.87486,
+     "n_s1": 88171,
+     "t": 0.66,
+     "t_empty": 0.8
+    },
+    "B_US": {
+     "macro_f05": 0.96072,
+     "nonsingleton_f05": 0.96097,
+     "singleton_acc": 0.95637,
+     "pair_precision": 0.98916,
+     "pair_recall": 0.91653,
+     "n_s1": 132866,
+     "t": 0.66,
+     "t_empty": 0.8
+    }
+   },
+   "tuned_on_India_A": {
+    "t": 0.68,
+    "t_empty": 0.68,
+    "A": 0.93526,
+    "B_pooled": {
+     "macro_f05": 0.95045,
+     "nonsingleton_f05": 0.95255,
+     "singleton_acc": 0.91511,
+     "pair_precision": 0.98672,
+     "pair_recall": 0.89861,
+     "n_s1": 221037,
+     "t": 0.68,
+     "t_empty": 0.68
+    },
+    "B_India": {
+     "macro_f05": 0.93567,
+     "nonsingleton_f05": 0.93734,
+     "singleton_acc": 0.90734,
+     "pair_precision": 0.98293,
+     "pair_recall": 0.87366,
+     "n_s1": 88171,
+     "t": 0.68,
+     "t_empty": 0.68
+    },
+    "B_US": {
+     "macro_f05": 0.96026,
+     "nonsingleton_f05": 0.96265,
+     "singleton_acc": 0.92024,
+     "pair_precision": 0.98915,
+     "pair_recall": 0.91522,
+     "n_s1": 132866,
+     "t": 0.68,
+     "t_empty": 0.68
+    }
+   },
+   "tuned_on_US_A": {
+    "t": 0.66,
+    "t_empty": 0.82,
+    "A": 0.96096,
+    "B_pooled": {
+     "macro_f05": 0.95049,
+     "nonsingleton_f05": 0.95016,
+     "singleton_acc": 0.95602,
+     "pair_precision": 0.98671,
+     "pair_recall": 0.89973,
+     "n_s1": 221037,
+     "t": 0.66,
+     "t_empty": 0.82
+    },
+    "B_India": {
+     "macro_f05": 0.93518,
+     "nonsingleton_f05": 0.93446,
+     "singleton_acc": 0.94737,
+     "pair_precision": 0.98272,
+     "pair_recall": 0.87467,
+     "n_s1": 88171,
+     "t": 0.66,
+     "t_empty": 0.82
+    },
+    "B_US": {
+     "macro_f05": 0.96065,
+     "nonsingleton_f05": 0.96058,
+     "singleton_acc": 0.96172,
+     "pair_precision": 0.98926,
+     "pair_recall": 0.9164,
+     "n_s1": 132866,
+     "t": 0.66,
+     "t_empty": 0.82
+    }
+   },
+   "at_t0.90_te0.92": {
+    "B_pooled": {
+     "macro_f05": 0.94232,
+     "nonsingleton_f05": 0.9402,
+     "singleton_acc": 0.97805,
+     "pair_precision": 0.99534,
+     "pair_recall": 0.86076,
+     "n_s1": 221037,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_India": {
+     "macro_f05": 0.92576,
+     "nonsingleton_f05": 0.92293,
+     "singleton_acc": 0.97358,
+     "pair_precision": 0.99414,
+     "pair_recall": 0.83122,
+     "n_s1": 88171,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_US": {
+     "macro_f05": 0.95331,
+     "nonsingleton_f05": 0.95166,
+     "singleton_acc": 0.981,
+     "pair_precision": 0.9961,
+     "pair_recall": 0.88042,
+     "n_s1": 132866,
+     "t": 0.9,
+     "t_empty": 0.92
+    }
+   }
+  },
+  "v2us": {
+   "tuned_on_pooled_A": {
+    "t": 0.82,
+    "t_empty": 0.82,
+    "A": 0.92021,
+    "B_pooled": {
+     "macro_f05": 0.92058,
+     "nonsingleton_f05": 0.92433,
+     "singleton_acc": 0.85734,
+     "pair_precision": 0.97002,
+     "pair_recall": 0.86612,
+     "n_s1": 221037,
+     "t": 0.82,
+     "t_empty": 0.82
+    },
+    "B_India": {
+     "macro_f05": 0.85701,
+     "nonsingleton_f05": 0.86624,
+     "singleton_acc": 0.70087,
+     "pair_precision": 0.93231,
+     "pair_recall": 0.80127,
+     "n_s1": 88171,
+     "t": 0.82,
+     "t_empty": 0.82
+    },
+    "B_US": {
+     "macro_f05": 0.96276,
+     "nonsingleton_f05": 0.9629,
+     "singleton_acc": 0.96039,
+     "pair_precision": 0.99358,
+     "pair_recall": 0.90926,
+     "n_s1": 132866,
+     "t": 0.82,
+     "t_empty": 0.82
+    }
+   },
+   "tuned_on_India_A": {
+    "t": 0.84,
+    "t_empty": 0.84,
+    "A": 0.85696,
+    "B_pooled": {
+     "macro_f05": 0.92045,
+     "nonsingleton_f05": 0.92352,
+     "singleton_acc": 0.86872,
+     "pair_precision": 0.97205,
+     "pair_recall": 0.86205,
+     "n_s1": 221037,
+     "t": 0.84,
+     "t_empty": 0.84
+    },
+    "B_India": {
+     "macro_f05": 0.85742,
+     "nonsingleton_f05": 0.86541,
+     "singleton_acc": 0.72241,
+     "pair_precision": 0.93641,
+     "pair_recall": 0.79524,
+     "n_s1": 88171,
+     "t": 0.84,
+     "t_empty": 0.84
+    },
+    "B_US": {
+     "macro_f05": 0.96228,
+     "nonsingleton_f05": 0.96211,
+     "singleton_acc": 0.96507,
+     "pair_precision": 0.99414,
+     "pair_recall": 0.90649,
+     "n_s1": 132866,
+     "t": 0.84,
+     "t_empty": 0.84
+    }
+   },
+   "tuned_on_US_A": {
+    "t": 0.68,
+    "t_empty": 0.82,
+    "A": 0.96382,
+    "B_pooled": {
+     "macro_f05": 0.9194,
+     "nonsingleton_f05": 0.92309,
+     "singleton_acc": 0.85734,
+     "pair_precision": 0.95894,
+     "pair_recall": 0.88643,
+     "n_s1": 221037,
+     "t": 0.68,
+     "t_empty": 0.82
+    },
+    "B_India": {
+     "macro_f05": 0.85235,
+     "nonsingleton_f05": 0.8613,
+     "singleton_acc": 0.70087,
+     "pair_precision": 0.91203,
+     "pair_recall": 0.83103,
+     "n_s1": 88171,
+     "t": 0.68,
+     "t_empty": 0.82
+    },
+    "B_US": {
+     "macro_f05": 0.9639,
+     "nonsingleton_f05": 0.96411,
+     "singleton_acc": 0.96039,
+     "pair_precision": 0.9894,
+     "pair_recall": 0.92329,
+     "n_s1": 132866,
+     "t": 0.68,
+     "t_empty": 0.82
+    }
+   },
+   "at_t0.90_te0.92": {
+    "B_pooled": {
+     "macro_f05": 0.91698,
+     "nonsingleton_f05": 0.91699,
+     "singleton_acc": 0.91689,
+     "pair_precision": 0.9789,
+     "pair_recall": 0.84349,
+     "n_s1": 221037,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_India": {
+     "macro_f05": 0.8539,
+     "nonsingleton_f05": 0.85585,
+     "singleton_acc": 0.82097,
+     "pair_precision": 0.95024,
+     "pair_recall": 0.76742,
+     "n_s1": 88171,
+     "t": 0.9,
+     "t_empty": 0.92
+    },
+    "B_US": {
+     "macro_f05": 0.95884,
+     "nonsingleton_f05": 0.95758,
+     "singleton_acc": 0.98006,
+     "pair_precision": 0.99605,
+     "pair_recall": 0.8941,
+     "n_s1": 132866,
+     "t": 0.9,
+     "t_empty": 0.92
+    }
+   },
+   "robust_min_inUS_heldoutIndia": {
+    "t": 0.84,
+    "t_empty": 0.84,
+    "A_US": 0.96213,
+    "A_India": 0.85696,
+    "B_US": {
+     "macro_f05": 0.96228,
+     "nonsingleton_f05": 0.96211,
+     "singleton_acc": 0.96507,
+     "pair_precision": 0.99414,
+     "pair_recall": 0.90649,
+     "n_s1": 132866,
+     "t": 0.84,
+     "t_empty": 0.84
+    },
+    "B_India": {
+     "macro_f05": 0.85742,
+     "nonsingleton_f05": 0.86541,
+     "singleton_acc": 0.72241,
+     "pair_precision": 0.93641,
+     "pair_recall": 0.79524,
+     "n_s1": 88171,
+     "t": 0.84,
+     "t_empty": 0.84
+    }
+   },
+   "robust_cost_vs_US_best_on_A": 0.00169
+  }
+ }
+}

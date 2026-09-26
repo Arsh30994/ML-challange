@@ -1,0 +1,13 @@
+# Runtime dependencies (pinned to the versions the v1 submission was produced with)
+polars==1.44.2
+lightgbm==4.7.0
+numpy==2.5.3
+scipy==1.18.1
+scikit-learn==1.9.1
+sparse_dot_topn==1.2.0
+rapidfuzz==3.14.6
+pandas==3.0.6
+pyarrow==25.0.1
+indic_transliteration==2.3.82
+Unidecode==1.4.0
+numba==0.67.0

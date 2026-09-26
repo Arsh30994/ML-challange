@@ -1,288 +1,551 @@
 {
-  "locked_config": {
-    "matcher": "v1 LightGBM, all-country model (/workspace/amlc/work/loco_model_ALL.txt), 21 features",
+ "locked_config": {
+  "matcher": "v1 LightGBM, all-country model (/workspace/amlc/work/loco_model_ALL.txt), 21 features",
+  "t": 0.7,
+  "t_empty": 0.7,
+  "blocking": "k=10 per source, M=30 per method + reverse top-5, weights.json LR score, floor score>=7.966",
+  "floor_provenance": "7.966 = log-odds of p=0.002 under the weights.json blocking LR (intercept -14.1787); not re-fit"
+ },
+ "floor_decision_halfA_halfB": {
+  "k10": {
+   "pairs": 8827260,
+   "cand_per_s1": 20.0,
+   "A": {
+    "macro_f05": 0.97155,
+    "nonsingleton_f05": 0.9742,
+    "singleton_acc": 0.92665,
+    "pair_precision": 0.98979,
+    "pair_recall": 0.94586,
+    "n_s1": 220326,
     "t": 0.7,
-    "t_empty": 0.7,
-    "blocking": "k=10 per source, M=30 per method + reverse top-5, weights.json LR score, floor score>=7.966",
-    "floor_provenance": "7.966 = log-odds of p=0.002 under the weights.json blocking LR (intercept -14.1787); not re-fit"
+    "t_empty": 0.7
+   },
+   "B": {
+    "macro_f05": 0.97164,
+    "nonsingleton_f05": 0.97428,
+    "singleton_acc": 0.9273,
+    "pair_precision": 0.98969,
+    "pair_recall": 0.94618,
+    "n_s1": 221037,
+    "t": 0.7,
+    "t_empty": 0.7
+   }
   },
-  "floor_decision_halfA_halfB": {
-    "k10": {
-      "pairs": 8827260,
-      "cand_per_s1": 20.0,
-      "A": {
-        "macro_f05": 0.97155,
-        "nonsingleton_f05": 0.9742,
-        "singleton_acc": 0.92665,
-        "pair_precision": 0.98979,
-        "pair_recall": 0.94586,
-        "n_s1": 220326,
-        "t": 0.7,
-        "t_empty": 0.7
-      },
-      "B": {
-        "macro_f05": 0.97164,
-        "nonsingleton_f05": 0.97428,
-        "singleton_acc": 0.9273,
-        "pair_precision": 0.98969,
-        "pair_recall": 0.94618,
-        "n_s1": 221037,
-        "t": 0.7,
-        "t_empty": 0.7
-      }
-    },
-    "k10_floor7.966": {
-      "pairs": 5712171,
-      "cand_per_s1": 12.942,
-      "A": {
-        "macro_f05": 0.97136,
-        "nonsingleton_f05": 0.97396,
-        "singleton_acc": 0.92722,
-        "pair_precision": 0.98988,
-        "pair_recall": 0.945,
-        "n_s1": 220326,
-        "t": 0.7,
-        "t_empty": 0.7
-      },
-      "B": {
-        "macro_f05": 0.97144,
-        "nonsingleton_f05": 0.97402,
-        "singleton_acc": 0.92794,
-        "pair_precision": 0.98978,
-        "pair_recall": 0.94534,
-        "n_s1": 221037,
-        "t": 0.7,
-        "t_empty": 0.7
-      }
-    },
-    "decision": {
-      "half_A_diff_k10_minus_floor": 0.00019,
-      "chosen": "k10_floor7.966",
-      "rule": "prefer smaller set if within 0.001 on half A"
-    }
+  "k10_floor7.966": {
+   "pairs": 5712171,
+   "cand_per_s1": 12.942,
+   "A": {
+    "macro_f05": 0.97136,
+    "nonsingleton_f05": 0.97396,
+    "singleton_acc": 0.92722,
+    "pair_precision": 0.98988,
+    "pair_recall": 0.945,
+    "n_s1": 220326,
+    "t": 0.7,
+    "t_empty": 0.7
+   },
+   "B": {
+    "macro_f05": 0.97144,
+    "nonsingleton_f05": 0.97402,
+    "singleton_acc": 0.92794,
+    "pair_precision": 0.98978,
+    "pair_recall": 0.94534,
+    "n_s1": 221037,
+    "t": 0.7,
+    "t_empty": 0.7
+   }
   },
-  "honest_val_halfB_macro_f05_chosen_config": 0.97144,
-  "blocker_memfix_equivalence_val_slice": {
-    "slice": {
-      "s1": 40000,
-      "s2": 159986,
-      "s3": 170255
-    },
-    "pairs_old": 800000,
-    "pairs_new": 800000,
-    "only_in_old": 0,
-    "only_in_new": 0,
-    "column_diffs_on_common_pairs": {
-      "cos_word": {
-        "n_diff": 0,
-        "max_abs_diff": 0.0
-      },
-      "cos_char": {
-        "n_diff": 0,
-        "max_abs_diff": 0.0
-      },
-      "cos_sk": {
-        "n_diff": 0,
-        "max_abs_diff": 0.0
-      },
-      "cos_addr": {
-        "n_diff": 0,
-        "max_abs_diff": 0.0
-      },
-      "addr_missing": {
-        "n_diff": 0,
-        "max_abs_diff": 0.0
-      },
-      "methods": {
-        "n_diff": 0
-      },
-      "score": {
-        "n_diff": 0,
-        "max_abs_diff": 0.0
-      },
-      "rank": {
-        "n_diff": 0
-      }
-    },
-    "exact_match": true
+  "decision": {
+   "half_A_diff_k10_minus_floor": 0.00019,
+   "chosen": "k10_floor7.966",
+   "rule": "prefer smaller set if within 0.001 on half A"
+  }
+ },
+ "honest_val_halfB_macro_f05_chosen_config": 0.97144,
+ "blocker_memfix_equivalence_val_slice": {
+  "slice": {
+   "s1": 40000,
+   "s2": 159986,
+   "s3": 170255
   },
-  "france_rerun_on_new_blocker": "scored and predicted pairs identical to the old-code France run (5,172,700 scored / 831,414 predicted)",
-  "test": {
-    "rows_candidate_pairs": 1732544,
-    "rows_matching_results": 1732544,
-    "scored_pairs": 29933382,
-    "pred_pairs": 5894590,
-    "pred_pairs_not_in_candidates": 0,
-    "stats": {
-      "ALL": {
-        "s1": 1732544,
-        "cand_mean": 17.277,
-        "cand_p50": 20.0,
-        "cand_p95": 20.0,
-        "cand_p99": 20.0,
-        "cand_max": 20,
-        "s1_without_candidates": 7,
-        "prediction_rate": 0.94925,
-        "empty_rate": 0.05075,
-        "mean_pred_per_s1": 3.4023,
-        "mean_pred_per_nonempty_s1": 3.5842
-      },
-      "France": {
-        "s1": 259452,
-        "cand_mean": 19.937,
-        "cand_p50": 20.0,
-        "cand_p95": 20.0,
-        "cand_p99": 20.0,
-        "cand_max": 20,
-        "s1_without_candidates": 0,
-        "prediction_rate": 0.91539,
-        "empty_rate": 0.08461,
-        "mean_pred_per_s1": 3.2045,
-        "mean_pred_per_nonempty_s1": 3.5007
-      },
-      "India": {
-        "s1": 809986,
-        "cand_mean": 18.02,
-        "cand_p50": 20.0,
-        "cand_p95": 20.0,
-        "cand_p99": 20.0,
-        "cand_max": 20,
-        "s1_without_candidates": 3,
-        "prediction_rate": 0.94988,
-        "empty_rate": 0.05012,
-        "mean_pred_per_s1": 3.369,
-        "mean_pred_per_nonempty_s1": 3.5468
-      },
-      "US": {
-        "s1": 663106,
-        "cand_mean": 15.329,
-        "cand_p50": 17.0,
-        "cand_p95": 20.0,
-        "cand_p99": 20.0,
-        "cand_max": 20,
-        "s1_without_candidates": 4,
-        "prediction_rate": 0.96174,
-        "empty_rate": 0.03826,
-        "mean_pred_per_s1": 3.5203,
-        "mean_pred_per_nonempty_s1": 3.6603
-      }
-    },
-    "combine_s": 11.4,
-    "combine_peak_rss_gb": 5.72
+  "pairs_old": 800000,
+  "pairs_new": 800000,
+  "only_in_old": 0,
+  "only_in_new": 0,
+  "column_diffs_on_common_pairs": {
+   "cos_word": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_char": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_sk": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_addr": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "addr_missing": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "methods": {
+    "n_diff": 0
+   },
+   "score": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "rank": {
+    "n_diff": 0
+   }
   },
-  "test_per_country_logs": {
-    "France": {
-      "country": "France",
-      "rows": {
-        "s1": 259452,
-        "s2": 703378,
-        "s3": 731615
-      },
-      "stopwords": {
-        "source": "norm_test: country='France' S1+S2+S3 names of this run only (1694445 docs)",
-        "n": 60
-      },
-      "blocking_s": 95.3,
-      "peak_after_blocking_gb": 2.756,
-      "pairs_k10": 5189040,
-      "pairs_scored": 5172700,
-      "features_predict_s": 15.9,
-      "pred_pairs": 831414,
-      "total_s": 111.8,
-      "peak_rss_gb": 3.591
-    },
-    "India": {
-      "country": "India",
-      "rows": {
-        "s1": 809986,
-        "s2": 2312565,
-        "s3": 2405000
-      },
-      "stopwords": {
-        "source": "norm_test: country='India' S1+S2+S3 names of this run only (5527551 docs)",
-        "n": 39
-      },
-      "blocking_s": 1516.8,
-      "peak_after_blocking_gb": 6.655,
-      "pairs_k10": 16199720,
-      "pairs_scored": 14595966,
-      "features_predict_s": 61.6,
-      "pred_pairs": 2728877,
-      "total_s": 1580.4,
-      "peak_rss_gb": 6.655
-    },
-    "US": {
-      "country": "US",
-      "rows": {
-        "s1": 663106,
-        "s2": 1871330,
-        "s3": 1945701
-      },
-      "stopwords": {
-        "source": "norm_test: country='US' S1+S2+S3 names of this run only (4480137 docs)",
-        "n": 29
-      },
-      "blocking_s": 1179.0,
-      "peak_after_blocking_gb": 5.398,
-      "pairs_k10": 13262120,
-      "pairs_scored": 10164716,
-      "features_predict_s": 38.4,
-      "pred_pairs": 2334299,
-      "total_s": 1218.9,
-      "peak_rss_gb": 5.398
-    }
+  "exact_match": true
+ },
+ "france_rerun_on_new_blocker": "scored and predicted pairs identical to the old-code France run (5,172,700 scored / 831,414 predicted)",
+ "test": {
+  "rows_candidate_pairs": 1732544,
+  "rows_matching_results": 1732544,
+  "scored_pairs": 29933382,
+  "pred_pairs": 5894590,
+  "pred_pairs_not_in_candidates": 0,
+  "stats": {
+   "ALL": {
+    "s1": 1732544,
+    "cand_mean": 17.277,
+    "cand_p50": 20.0,
+    "cand_p95": 20.0,
+    "cand_p99": 20.0,
+    "cand_max": 20,
+    "s1_without_candidates": 7,
+    "prediction_rate": 0.94925,
+    "empty_rate": 0.05075,
+    "mean_pred_per_s1": 3.4023,
+    "mean_pred_per_nonempty_s1": 3.5842
+   },
+   "France": {
+    "s1": 259452,
+    "cand_mean": 19.937,
+    "cand_p50": 20.0,
+    "cand_p95": 20.0,
+    "cand_p99": 20.0,
+    "cand_max": 20,
+    "s1_without_candidates": 0,
+    "prediction_rate": 0.91539,
+    "empty_rate": 0.08461,
+    "mean_pred_per_s1": 3.2045,
+    "mean_pred_per_nonempty_s1": 3.5007
+   },
+   "India": {
+    "s1": 809986,
+    "cand_mean": 18.02,
+    "cand_p50": 20.0,
+    "cand_p95": 20.0,
+    "cand_p99": 20.0,
+    "cand_max": 20,
+    "s1_without_candidates": 3,
+    "prediction_rate": 0.94988,
+    "empty_rate": 0.05012,
+    "mean_pred_per_s1": 3.369,
+    "mean_pred_per_nonempty_s1": 3.5468
+   },
+   "US": {
+    "s1": 663106,
+    "cand_mean": 15.329,
+    "cand_p50": 17.0,
+    "cand_p95": 20.0,
+    "cand_p99": 20.0,
+    "cand_max": 20,
+    "s1_without_candidates": 4,
+    "prediction_rate": 0.96174,
+    "empty_rate": 0.03826,
+    "mean_pred_per_s1": 3.5203,
+    "mean_pred_per_nonempty_s1": 3.6603
+   }
   },
-  "val_same_pipeline_stats": {
+  "combine_s": 11.4,
+  "combine_peak_rss_gb": 5.72
+ },
+ "test_per_country_logs": {
+  "France": {
+   "country": "France",
+   "rows": {
+    "s1": 259452,
+    "s2": 703378,
+    "s3": 731615
+   },
+   "stopwords": {
+    "source": "norm_test: country='France' S1+S2+S3 names of this run only (1694445 docs)",
+    "n": 60
+   },
+   "blocking_s": 95.3,
+   "peak_after_blocking_gb": 2.756,
+   "pairs_k10": 5189040,
+   "pairs_scored": 5172700,
+   "features_predict_s": 15.9,
+   "pred_pairs": 831414,
+   "total_s": 111.8,
+   "peak_rss_gb": 3.591
+  },
+  "India": {
+   "country": "India",
+   "rows": {
+    "s1": 809986,
+    "s2": 2312565,
+    "s3": 2405000
+   },
+   "stopwords": {
+    "source": "norm_test: country='India' S1+S2+S3 names of this run only (5527551 docs)",
+    "n": 39
+   },
+   "blocking_s": 1516.8,
+   "peak_after_blocking_gb": 6.655,
+   "pairs_k10": 16199720,
+   "pairs_scored": 14595966,
+   "features_predict_s": 61.6,
+   "pred_pairs": 2728877,
+   "total_s": 1580.4,
+   "peak_rss_gb": 6.655
+  },
+  "US": {
+   "country": "US",
+   "rows": {
+    "s1": 663106,
+    "s2": 1871330,
+    "s3": 1945701
+   },
+   "stopwords": {
+    "source": "norm_test: country='US' S1+S2+S3 names of this run only (4480137 docs)",
+    "n": 29
+   },
+   "blocking_s": 1179.0,
+   "peak_after_blocking_gb": 5.398,
+   "pairs_k10": 13262120,
+   "pairs_scored": 10164716,
+   "features_predict_s": 38.4,
+   "pred_pairs": 2334299,
+   "total_s": 1218.9,
+   "peak_rss_gb": 5.398
+  }
+ },
+ "val_same_pipeline_stats": {
+  "ALL": {
+   "s1": 441363,
+   "cand_mean": 12.942,
+   "cand_p50": 13.0,
+   "cand_p95": 20.0,
+   "cand_p99": 20.0,
+   "cand_max": 20,
+   "s1_without_candidates": 868,
+   "prediction_rate": 0.94371,
+   "empty_rate": 0.05629,
+   "mean_pred_per_s1": 3.3033,
+   "mean_pred_per_nonempty_s1": 3.5003
+  },
+  "India": {
+   "s1": 176637,
+   "cand_mean": 14.823,
+   "cand_p50": 18.0,
+   "cand_p95": 20.0,
+   "cand_p99": 20.0,
+   "cand_max": 20,
+   "s1_without_candidates": 192,
+   "prediction_rate": 0.94081,
+   "empty_rate": 0.05919,
+   "mean_pred_per_s1": 3.2446,
+   "mean_pred_per_nonempty_s1": 3.4487
+  },
+  "US": {
+   "s1": 264726,
+   "cand_mean": 11.687,
+   "cand_p50": 11.0,
+   "cand_p95": 20.0,
+   "cand_p99": 20.0,
+   "cand_max": 20,
+   "s1_without_candidates": 676,
+   "prediction_rate": 0.94564,
+   "empty_rate": 0.05436,
+   "mean_pred_per_s1": 3.3424,
+   "mean_pred_per_nonempty_s1": 3.5346
+  }
+ },
+ "validator": "ML Challenge 2026 \u2014 submission validator\n  test dir: /workspace/amlc/dataset/dataset/test\n  required S1 entities: 1732544\n  valid S2/S3 match IDs: 9969589\n  matching_results.tsv: 1732544 rows (87919 empty, 1644625 non-empty).\n  candidate_pairs.tsv: 1732544 rows (7 empty, 1732537 non-empty).\n\nPASS \u2014 no blocking issues found. Safe to submit.\n\n\nrc 0 elapsed 67.5 peak_gb 7.338992\n",
+ "output_sha256": {
+  "candidate_pairs.tsv": "ed1dc29b493523a87ac40849688c40b8e8d672fdbc706866c424cbc42c9dab61",
+  "matching_results.tsv": "1ddc96c3e4c03983a5fc2a2871efe35f1d369d0e96d54dc5859f4eda58055e9a"
+ },
+ "pytest": "37 passed",
+ "flags": [
+  "Peak memory above the ~5 GB target: India blocking 6.66 GB, US 5.40 GB, combine 5.72 GB, validator --check-ids 7.34 GB (France 3.59 GB).",
+  "France: the score floor removes only 0.3% of its k=10 pairs (India 9.9%, US 23.4%), so candidates per S1 are near the cap (19.94).",
+  "France empty rate 8.46% vs val 5.63% (val India 5.92%, US 5.44%; train singleton rate 5.58%). Mean predicted matches per S1 3.20 vs val 3.30.",
+  "Test candidates per S1 are higher than val for every country (US 15.33 vs 11.69, India 18.02 vs 14.82): test populations are about 4x val per country (denser), which shifts the score and record-competition features the model was trained on."
+ ],
+ "models": {
+  "v1_model_ALL": {
+   "path": "code/business_entity_resolution/models/v1_model_ALL.txt",
+   "copied_from": "work/loco_model_ALL.txt",
+   "sha256": "cd16c01fc44693a20a09f27ebfc7cf92ad3b707af048ada38961ba2282bea20a",
+   "used_by": "submissions v1 (t=0.70/0.70), v2 (parent re-decode t=0.90/0.92)"
+  },
+  "v2_model_ALL_f7.966": {
+   "path": "code/business_entity_resolution/models/v2_model_ALL_f7.966.txt",
+   "sha256": "faa599161b075e2922af4ce324328d730c20cd99be1666068f2d4fbf3a5b4a58",
+   "trained_on": "large-pool floored (7.966) candidates; train-side S1 not in val and not in the v1 tuning subset, hash(entity_id,11)%10<4; 477,376 S1 / 8,091,303 rows (+895,740 early-stop rows)",
+   "features": "FEATURES_V2 (len_rel)",
+   "used_by": "submission v3 (t=0.66, t_empty=0.80)"
+  },
+  "v2_model_USonly_f7.966": {
+   "path": "code/business_entity_resolution/models/v2_model_USonly_f7.966.txt",
+   "sha256": "9379eb219dbfd86a4ba7e7f16c770e1c18072f926cec19396d1863e339cb6663",
+   "trained_on": "same selection, US only (286,008 S1 / 4,695,659 rows)",
+   "used_by": "LOCO check only"
+  }
+ },
+ "blocker_equivalence_v2": true,
+ "submissions_v3_v4": {
+  "v3": {
+   "thresholds": {
+    "France": [
+     0.66,
+     0.8
+    ],
+    "India": [
+     0.66,
+     0.8
+    ],
+    "US": [
+     0.66,
+     0.8
+    ]
+   },
+   "model_sha256": "faa599161b075e2922af4ce324328d730c20cd99be1666068f2d4fbf3a5b4a58",
+   "stats": {
     "ALL": {
-      "s1": 441363,
-      "cand_mean": 12.942,
-      "cand_p50": 13.0,
-      "cand_p95": 20.0,
-      "cand_p99": 20.0,
-      "cand_max": 20,
-      "s1_without_candidates": 868,
-      "prediction_rate": 0.94371,
-      "empty_rate": 0.05629,
-      "mean_pred_per_s1": 3.3033,
-      "mean_pred_per_nonempty_s1": 3.5003
+     "s1": 1732544,
+     "cand_mean": 17.277,
+     "cand_p50": 20.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 7,
+     "prediction_rate": 0.92732,
+     "empty_rate": 0.07268,
+     "mean_pred_per_s1": 3.1502,
+     "mean_pred_per_nonempty_s1": 3.3971
+    },
+    "France": {
+     "s1": 259452,
+     "cand_mean": 19.937,
+     "cand_p50": 20.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 0,
+     "prediction_rate": 0.89402,
+     "empty_rate": 0.10598,
+     "mean_pred_per_s1": 2.9843,
+     "mean_pred_per_nonempty_s1": 3.338
     },
     "India": {
-      "s1": 176637,
-      "cand_mean": 14.823,
-      "cand_p50": 18.0,
-      "cand_p95": 20.0,
-      "cand_p99": 20.0,
-      "cand_max": 20,
-      "s1_without_candidates": 192,
-      "prediction_rate": 0.94081,
-      "empty_rate": 0.05919,
-      "mean_pred_per_s1": 3.2446,
-      "mean_pred_per_nonempty_s1": 3.4487
+     "s1": 809986,
+     "cand_mean": 18.02,
+     "cand_p50": 20.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 3,
+     "prediction_rate": 0.92818,
+     "empty_rate": 0.07182,
+     "mean_pred_per_s1": 3.1139,
+     "mean_pred_per_nonempty_s1": 3.3548
     },
     "US": {
-      "s1": 264726,
-      "cand_mean": 11.687,
-      "cand_p50": 11.0,
-      "cand_p95": 20.0,
-      "cand_p99": 20.0,
-      "cand_max": 20,
-      "s1_without_candidates": 676,
-      "prediction_rate": 0.94564,
-      "empty_rate": 0.05436,
-      "mean_pred_per_s1": 3.3424,
-      "mean_pred_per_nonempty_s1": 3.5346
+     "s1": 663106,
+     "cand_mean": 15.329,
+     "cand_p50": 17.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 4,
+     "prediction_rate": 0.93929,
+     "empty_rate": 0.06071,
+     "mean_pred_per_s1": 3.2595,
+     "mean_pred_per_nonempty_s1": 3.4702
     }
+   },
+   "validator": [
+    "PASS \u2014 no blocking issues found. Safe to submit.",
+    "validator_exit=0"
+   ]
   },
-  "validator": "ML Challenge 2026 \u2014 submission validator\n  test dir: /workspace/amlc/dataset/dataset/test\n  required S1 entities: 1732544\n  valid S2/S3 match IDs: 9969589\n  matching_results.tsv: 1732544 rows (87919 empty, 1644625 non-empty).\n  candidate_pairs.tsv: 1732544 rows (7 empty, 1732537 non-empty).\n\nPASS \u2014 no blocking issues found. Safe to submit.\n\n\nrc 0 elapsed 67.5 peak_gb 7.338992\n",
-  "output_sha256": {
-    "candidate_pairs.tsv": "ed1dc29b493523a87ac40849688c40b8e8d672fdbc706866c424cbc42c9dab61",
-    "matching_results.tsv": "1ddc96c3e4c03983a5fc2a2871efe35f1d369d0e96d54dc5859f4eda58055e9a"
+  "v3_robust": {
+   "thresholds": {
+    "France": [
+     0.84,
+     0.84
+    ],
+    "India": [
+     0.84,
+     0.84
+    ],
+    "US": [
+     0.84,
+     0.84
+    ]
+   },
+   "model_sha256": "faa599161b075e2922af4ce324328d730c20cd99be1666068f2d4fbf3a5b4a58",
+   "stats": {
+    "ALL": {
+     "s1": 1732544,
+     "cand_mean": 17.277,
+     "cand_p50": 20.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 7,
+     "prediction_rate": 0.92547,
+     "empty_rate": 0.07453,
+     "mean_pred_per_s1": 3.0297,
+     "mean_pred_per_nonempty_s1": 3.2737
+    },
+    "France": {
+     "s1": 259452,
+     "cand_mean": 19.937,
+     "cand_p50": 20.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 0,
+     "prediction_rate": 0.8925,
+     "empty_rate": 0.1075,
+     "mean_pred_per_s1": 2.8961,
+     "mean_pred_per_nonempty_s1": 3.245
+    },
+    "India": {
+     "s1": 809986,
+     "cand_mean": 18.02,
+     "cand_p50": 20.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 3,
+     "prediction_rate": 0.92606,
+     "empty_rate": 0.07394,
+     "mean_pred_per_s1": 2.9779,
+     "mean_pred_per_nonempty_s1": 3.2157
+    },
+    "US": {
+     "s1": 663106,
+     "cand_mean": 15.329,
+     "cand_p50": 17.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 4,
+     "prediction_rate": 0.93765,
+     "empty_rate": 0.06235,
+     "mean_pred_per_s1": 3.1452,
+     "mean_pred_per_nonempty_s1": 3.3544
+    }
+   },
+   "validator": [
+    "PASS \u2014 no blocking issues found. Safe to submit.",
+    "validator_exit=0"
+   ]
   },
-  "pytest": "37 passed",
-  "flags": [
-    "Peak memory above the ~5 GB target: India blocking 6.66 GB, US 5.40 GB, combine 5.72 GB, validator --check-ids 7.34 GB (France 3.59 GB).",
-    "France: the score floor removes only 0.3% of its k=10 pairs (India 9.9%, US 23.4%), so candidates per S1 are near the cap (19.94).",
-    "France empty rate 8.46% vs val 5.63% (val India 5.92%, US 5.44%; train singleton rate 5.58%). Mean predicted matches per S1 3.20 vs val 3.30.",
-    "Test candidates per S1 are higher than val for every country (US 15.33 vs 11.69, India 18.02 vs 14.82): test populations are about 4x val per country (denser), which shifts the score and record-competition features the model was trained on."
-  ]
+  "v4": {
+   "thresholds": {
+    "France": [
+     0.47,
+     0.55
+    ],
+    "India": [
+     0.62,
+     0.71
+    ],
+    "US": [
+     0.59,
+     0.68
+    ]
+   },
+   "model_sha256": "faa599161b075e2922af4ce324328d730c20cd99be1666068f2d4fbf3a5b4a58",
+   "stats": {
+    "ALL": {
+     "s1": 1732544,
+     "cand_mean": 17.277,
+     "cand_p50": 20.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 7,
+     "prediction_rate": 0.93284,
+     "empty_rate": 0.06716,
+     "mean_pred_per_s1": 3.2034,
+     "mean_pred_per_nonempty_s1": 3.434
+    },
+    "France": {
+     "s1": 259452,
+     "cand_mean": 19.937,
+     "cand_p50": 20.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 0,
+     "prediction_rate": 0.90579,
+     "empty_rate": 0.09421,
+     "mean_pred_per_s1": 3.1233,
+     "mean_pred_per_nonempty_s1": 3.4482
+    },
+    "India": {
+     "s1": 809986,
+     "cand_mean": 18.02,
+     "cand_p50": 20.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 3,
+     "prediction_rate": 0.93214,
+     "empty_rate": 0.06786,
+     "mean_pred_per_s1": 3.1459,
+     "mean_pred_per_nonempty_s1": 3.3749
+    },
+    "US": {
+     "s1": 663106,
+     "cand_mean": 15.329,
+     "cand_p50": 17.0,
+     "cand_p95": 20.0,
+     "cand_p99": 20.0,
+     "cand_max": 20,
+     "s1_without_candidates": 4,
+     "prediction_rate": 0.94428,
+     "empty_rate": 0.05572,
+     "mean_pred_per_s1": 3.305,
+     "mean_pred_per_nonempty_s1": 3.5001
+    }
+   },
+   "validator": [
+    "PASS \u2014 no blocking issues found. Safe to submit.",
+    "validator_exit=0"
+   ]
+  },
+  "sha256": [
+   "8ae421a3b5dd7e0d3ddac298d7cd39012ab21adb4e4adbc245aeac875b7e52c5  v3/candidate_pairs.tsv",
+   "0dcceb26804837992bd242925df3b3ce68f4de3e9a0e6e63364ec932b877f9a0  v3/matching_results.tsv",
+   "8ae421a3b5dd7e0d3ddac298d7cd39012ab21adb4e4adbc245aeac875b7e52c5  v3_robust/candidate_pairs.tsv",
+   "2cd77185af1d2a0ae502524bb624bb03bd163ba6d1e561c10fbe77ee07dee139  v3_robust/matching_results.tsv",
+   "8ae421a3b5dd7e0d3ddac298d7cd39012ab21adb4e4adbc245aeac875b7e52c5  v4/candidate_pairs.tsv",
+   "85adcc5151dce7c13a9fa1c9cbba6149e6ef04be385586bf7b8757715713fea4  v4/matching_results.tsv",
+   ""
+  ],
+  "halfB_largepool": {
+   "v3 (0.66/0.80)": 0.95062,
+   "v3_robust (0.84/0.84)": 0.94794,
+   "v4": "per-country thresholds; see reports/largepool_val/poolsize_check.md"
+  }
+ }
 }

@@ -1,0 +1,197 @@
+{
+ "slice": {
+  "s1": 40000,
+  "s2": 159986,
+  "s3": 170255
+ },
+ "reference": "work/tmp/blocking_before_memfix.py",
+ "1_inmemory_multicountry": {
+  "pairs_ref": 800000,
+  "pairs_new": 800000,
+  "only_in_ref": 0,
+  "only_in_new": 0,
+  "column_diffs": {
+   "cos_word": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_char": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_sk": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_addr": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "addr_missing": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "methods": {
+    "n_diff": 0
+   },
+   "score": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "rank": {
+    "n_diff": 0
+   }
+  },
+  "exact_match": true
+ },
+ "2_percountry_prefiltered_spill": {
+  "pairs_ref": 800000,
+  "pairs_new": 800000,
+  "only_in_ref": 0,
+  "only_in_new": 0,
+  "column_diffs": {
+   "cos_word": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_char": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_sk": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_addr": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "addr_missing": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "methods": {
+    "n_diff": 0
+   },
+   "score": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "rank": {
+    "n_diff": 0
+   }
+  },
+  "exact_match": true
+ },
+ "3_features_default_vs_chunk50k_reduce": {
+  "pairs_ref": 800000,
+  "pairs_new": 800000,
+  "only_in_ref": 0,
+  "only_in_new": 0,
+  "column_diffs": {
+   "cos_word": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_char": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_sk": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "cos_addr": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "addr_missing": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "methods": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "score": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "rank": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "s1_gap": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "s1_n": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "rec_rank": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "is_s3": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "rec_gap": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "rec_n_close": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "translit": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "name_tsr": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "name_jw": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "name_pr": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "addr_tsr": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "num_jacc": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "len_diff": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   },
+   "len_rel": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   }
+  },
+  "exact_match": true
+ },
+ "4_predict_full_vs_reduce": {
+  "pairs_ref": 800000,
+  "pairs_new": 800000,
+  "only_in_ref": 0,
+  "only_in_new": 0,
+  "column_diffs": {
+   "p": {
+    "n_diff": 0,
+    "max_abs_diff": 0.0
+   }
+  },
+  "exact_match": true
+ },
+ "all_exact": true
+}

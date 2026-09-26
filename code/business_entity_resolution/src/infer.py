@@ -23,7 +23,13 @@ from business_entity_resolution.src.pair_features import FEATURES, build_feature
 REPO = Path(__file__).resolve().parents[3]
 LOCKED = {"k_per_source": 10, "m_per_method": 30, "reverse_top": 5, "score_floor": 7.966,
           "weights_file": str(REPO / "reports/blocking_baseline/weights.json"),
-          "model_file": "/workspace/amlc/work/loco_model_ALL.txt", "t": 0.70, "t_empty": 0.70}
+          "model_file": str(Path(__file__).resolve().parents[1] / "models/v1_model_ALL.txt"),
+          "model_sha256": "cd16c01fc44693a20a09f27ebfc7cf92ad3b707af048ada38961ba2282bea20a", "t": 0.70, "t_empty": 0.70}
+
+
+def sha256(path) -> str:
+    import hashlib
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
 def peak_gb():
@@ -39,13 +45,15 @@ def decode(sc: pl.DataFrame, t: float, t_empty: float) -> pl.DataFrame:
     return sc.filter(pl.col("rb") & (pl.col("p") >= t) & (pl.col("sb") >= t_empty)).drop("rb", "sb")
 
 
-def score_candidates(cand, n1, n2, n3):
+def score_candidates(cand, n1, n2, n3, model_file=None):
     f = build_features(cand, n1, n2, n3)
-    m = lgb.Booster(model_file=LOCKED["model_file"])
+    m = lgb.Booster(model_file=model_file or LOCKED["model_file"])
+    feats = m.feature_name()  # v1 model: FEATURES (len_diff); v2 models: FEATURES_V2 (len_rel)
+    assert set(feats) <= set(f.columns), feats
     p = np.empty(f.height, dtype=np.float32)
     step = 2_000_000
     for i in range(0, f.height, step):
-        p[i:i + step] = m.predict(f.slice(i, step).select(FEATURES).to_numpy(), num_threads=6)
+        p[i:i + step] = m.predict(f.slice(i, step).select(feats).to_numpy(), num_threads=6)
     return cand.select("s1_idx", "src", "cand_idx", "score", "rank").with_columns(pl.Series("p", p))
 
 
@@ -64,11 +72,17 @@ def cmd_country(a):
     log["pairs_k10"] = cand.height
     cand = cand.filter(pl.col("score") >= LOCKED["score_floor"])
     log["pairs_scored"] = cand.height
+    Path(a.out_dir).mkdir(parents=True, exist_ok=True)
+    cand.write_parquet(Path(a.out_dir) / f"cand_{a.country}.parquet")  # blocking output kept for re-scoring
     t1 = time.time()
-    sc = score_candidates(cand, n1, n2, n3)
+    log["model_file"] = a.model; log["model_sha256"] = sha256(a.model)
+    if Path(a.model).resolve() == Path(LOCKED["model_file"]).resolve():
+        assert log["model_sha256"] == LOCKED["model_sha256"], "in-repo v1 model file changed"
+    sc = score_candidates(cand, n1, n2, n3, model_file=a.model)
     del cand
     log["features_predict_s"] = round(time.time() - t1, 1)
-    pred = decode(sc.select("s1_idx", "src", "cand_idx", "p"), LOCKED["t"], LOCKED["t_empty"])
+    pred = decode(sc.select("s1_idx", "src", "cand_idx", "p"), a.t, a.t_empty)
+    log["t"], log["t_empty"] = a.t, a.t_empty
     out = Path(a.out_dir); out.mkdir(parents=True, exist_ok=True)
     sc.write_parquet(out / f"scored_{a.country}.parquet")
     pred.write_parquet(out / f"pred_{a.country}.parquet")
@@ -134,11 +148,30 @@ def cmd_combine(a):
     print(json.dumps({k: v for k, v in res.items() if k != "per_country_logs"}, indent=1))
 
 
+def cmd_redecode(a):
+    """Re-decode kept test scores (scored_<C>.parquet from --src-dir) at new thresholds into --out-dir
+    (scored files are symlinked, logs copied with the new thresholds), ready for `combine`."""
+    src, out = Path(a.src_dir), Path(a.out_dir); out.mkdir(parents=True, exist_ok=True)
+    for f in sorted(src.glob("scored_*.parquet")):
+        c = f.stem.removeprefix("scored_")
+        if a.countries and c not in a.countries.split(","):
+            continue
+        pred = decode(pl.read_parquet(f, columns=["s1_idx", "src", "cand_idx", "p"]), a.t, a.t_empty)
+        pred.write_parquet(out / f"pred_{c}.parquet")
+        (out / f.name).unlink(missing_ok=True); (out / f.name).symlink_to(f.resolve())
+        log = json.loads((src / f"log_{c}.json").read_text())
+        log.update({"t": a.t, "t_empty": a.t_empty, "pred_pairs": pred.height, "redecoded_from": str(f)})
+        (out / f"log_{c}.json").write_text(json.dumps(log, indent=1))
+        print(c, pred.height, flush=True)
+
+
 def cmd_valstats(a):
     W = Path("/workspace/amlc/work")
     n1, n2, n3 = (pl.read_parquet(W / f"norm_val_s{n}.parquet") for n in (1, 2, 3))
     cand = pl.read_parquet(W / "candidates_val_k10.parquet").filter(pl.col("score") >= LOCKED["score_floor"])
-    sc = score_candidates(cand, n1, n2, n3)
+    if Path(a.model).resolve() == Path(LOCKED["model_file"]).resolve():
+        assert sha256(a.model) == LOCKED["model_sha256"], "in-repo v1 model file changed"
+    sc = score_candidates(cand, n1, n2, n3, model_file=a.model)
     pred = decode(sc.select("s1_idx", "src", "cand_idx", "p"), LOCKED["t"], LOCKED["t_empty"])
     s1 = n1.select(pl.col("idx").alias("s1_idx"), "country")
     st = stats(sc, pred, s1)
@@ -148,10 +181,16 @@ def cmd_valstats(a):
 def main():
     ap = argparse.ArgumentParser(); sp = ap.add_subparsers(dest="cmd", required=True)
     c = sp.add_parser("country"); c.add_argument("--norm-prefix", required=True); c.add_argument("--country", required=True); c.add_argument("--out-dir", required=True)
+    c.add_argument("--model", default=LOCKED["model_file"], help="LightGBM matcher (default: in-repo v1 model)")
+    c.add_argument("--t", type=float, default=LOCKED["t"]); c.add_argument("--t-empty", type=float, default=LOCKED["t_empty"])
     b = sp.add_parser("combine"); b.add_argument("--norm-prefix", required=True); b.add_argument("--out-dir", required=True); b.add_argument("--output-dir", required=True)
     v = sp.add_parser("valstats"); v.add_argument("--out", required=True)
+    v.add_argument("--model", default=LOCKED["model_file"], help="LightGBM matcher (default: in-repo v1 model)")
+    r = sp.add_parser("redecode"); r.add_argument("--src-dir", required=True); r.add_argument("--out-dir", required=True)
+    r.add_argument("--t", type=float, required=True); r.add_argument("--t-empty", type=float, required=True)
+    r.add_argument("--countries", default="", help="comma list; default all (per-country thresholds = one call per country)")
     a = ap.parse_args()
-    {"country": cmd_country, "combine": cmd_combine, "valstats": cmd_valstats}[a.cmd](a)
+    {"country": cmd_country, "combine": cmd_combine, "valstats": cmd_valstats, "redecode": cmd_redecode}[a.cmd](a)
 
 
 if __name__ == "__main__":

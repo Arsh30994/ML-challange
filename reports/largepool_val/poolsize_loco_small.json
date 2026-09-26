@@ -1,0 +1,135 @@
+{
+ "v2_model_USonly_f7.966": {
+  "India": {
+   "tuned_A": {
+    "t": 0.4,
+    "t_empty": 0.4,
+    "A": 0.92958,
+    "B": 0.93012
+   },
+   "B_at_0.465/0.553": {
+    "macro_f05": 0.92759,
+    "singleton_acc": 0.85978,
+    "pair_precision": 0.96974,
+    "pair_recall": 0.88771
+   },
+   "B_at_0.66/0.8": {
+    "macro_f05": 0.91552,
+    "singleton_acc": 0.91221,
+    "pair_precision": 0.97813,
+    "pair_recall": 0.85379
+   },
+   "B_at_0.84/0.84": {
+    "macro_f05": 0.90406,
+    "singleton_acc": 0.9242,
+    "pair_precision": 0.98567,
+    "pair_recall": 0.81105
+   },
+   "B_at_0.9/0.92": {
+    "macro_f05": 0.88996,
+    "singleton_acc": 0.95346,
+    "pair_precision": 0.98936,
+    "pair_recall": 0.78193
+   }
+  },
+  "US": {
+   "tuned_A": {
+    "t": 0.4,
+    "t_empty": 0.54,
+    "A": 0.97677,
+    "B": 0.97664
+   },
+   "B_at_0.465/0.553": {
+    "macro_f05": 0.97663,
+    "singleton_acc": 0.96494,
+    "pair_precision": 0.9915,
+    "pair_recall": 0.95248
+   },
+   "B_at_0.66/0.8": {
+    "macro_f05": 0.97452,
+    "singleton_acc": 0.98488,
+    "pair_precision": 0.99508,
+    "pair_recall": 0.93849
+   },
+   "B_at_0.84/0.84": {
+    "macro_f05": 0.97014,
+    "singleton_acc": 0.98796,
+    "pair_precision": 0.99759,
+    "pair_recall": 0.91852
+   },
+   "B_at_0.9/0.92": {
+    "macro_f05": 0.96517,
+    "singleton_acc": 0.99505,
+    "pair_precision": 0.9986,
+    "pair_recall": 0.90469
+   }
+  }
+ },
+ "v2_model_ALL_f7.966": {
+  "India": {
+   "tuned_A": {
+    "t": 0.44,
+    "t_empty": 0.52,
+    "A": 0.96131,
+    "B": 0.96155
+   },
+   "B_at_0.465/0.553": {
+    "macro_f05": 0.96139,
+    "singleton_acc": 0.95448,
+    "pair_precision": 0.98931,
+    "pair_recall": 0.92076
+   },
+   "B_at_0.66/0.8": {
+    "macro_f05": 0.95673,
+    "singleton_acc": 0.97948,
+    "pair_precision": 0.99434,
+    "pair_recall": 0.90117
+   },
+   "B_at_0.84/0.84": {
+    "macro_f05": 0.94949,
+    "singleton_acc": 0.98273,
+    "pair_precision": 0.99711,
+    "pair_recall": 0.87418
+   },
+   "B_at_0.9/0.92": {
+    "macro_f05": 0.94025,
+    "singleton_acc": 0.98984,
+    "pair_precision": 0.9981,
+    "pair_recall": 0.85421
+   }
+  },
+  "US": {
+   "tuned_A": {
+    "t": 0.42,
+    "t_empty": 0.54,
+    "A": 0.97548,
+    "B": 0.97529
+   },
+   "B_at_0.465/0.553": {
+    "macro_f05": 0.97521,
+    "singleton_acc": 0.96346,
+    "pair_precision": 0.99146,
+    "pair_recall": 0.94877
+   },
+   "B_at_0.66/0.8": {
+    "macro_f05": 0.97188,
+    "singleton_acc": 0.98903,
+    "pair_precision": 0.99606,
+    "pair_recall": 0.93004
+   },
+   "B_at_0.84/0.84": {
+    "macro_f05": 0.96621,
+    "singleton_acc": 0.9913,
+    "pair_precision": 0.99822,
+    "pair_recall": 0.90663
+   },
+   "B_at_0.9/0.92": {
+    "macro_f05": 0.95978,
+    "singleton_acc": 0.99639,
+    "pair_precision": 0.99876,
+    "pair_recall": 0.89085
+   }
+  }
+ },
+ "note": "US-only model: India rows are held-out-country; 0.465/0.553 = log-N fit value for France (259k)"
+}

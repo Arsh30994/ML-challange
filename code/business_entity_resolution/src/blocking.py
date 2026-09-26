@@ -251,8 +251,10 @@ def run_blocking(n1: pl.DataFrame, n2: pl.DataFrame, n3: pl.DataFrame, cfg: Bloc
     can never be candidates (all true pairs share the country value)."""
     res, info, timings = [], {}, {}
     for country in sorted(n1["country"].unique().to_list()):
-        a = n1.filter(pl.col("country") == country)
-        t = {"s2": n2.filter(pl.col("country") == country), "s3": n3.filter(pl.col("country") == country)}
+        # frames already restricted to this country are used as-is (no filtered copy held in memory)
+        _f = lambda d: d if (d["country"] == country).all() else d.filter(pl.col("country") == country)  # noqa: E731
+        a = _f(n1)
+        t = {"s2": _f(n2), "s3": _f(n3)}
         t0 = time.time()
         cand, stop, feats = block_country(a, t, cfg, keep_all=keep_all, timings=timings,
                                           spill_dir=None if spill_dir is None else f"{spill_dir}/{country}")

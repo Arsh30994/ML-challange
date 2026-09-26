@@ -1,0 +1,205 @@
+{
+ "universe": "all train S1/S2/S3 (both split sides)",
+ "scored_on": "val S1 only; decoding (one S1 per record) over the whole country universe",
+ "half_split": "val S1 by hash(entity_id, seed=7) % 2: A=0, B=1",
+ "grid_t": [
+  0.4,
+  0.96,
+  0.02
+ ],
+ "countries": {
+  "India": {
+   "val_s1": 176637,
+   "universe_s1": 883188,
+   "floors": {
+    "7.966": {
+     "cand_per_val_s1": 17.755,
+     "cand_per_universe_s1": 17.751
+    }
+   }
+  }
+ },
+ "countries_evaluated": [
+  "India"
+ ],
+ "floor_7.966": {
+  "cand_per_val_s1": 17.755,
+  "locked_t0.70_te0.70": {
+   "A": {
+    "macro_f05": 0.91936,
+    "nonsingleton_f05": 0.92928,
+    "singleton_acc": 0.75187,
+    "pair_precision": 0.95556,
+    "pair_recall": 0.89721,
+    "n_s1": 88466,
+    "t": 0.7,
+    "t_empty": 0.7,
+    "empty_rate": 0.05382,
+    "mean_pred_per_s1": 3.25032
+   },
+   "B": {
+    "macro_f05": 0.91933,
+    "nonsingleton_f05": 0.9298,
+    "singleton_acc": 0.74213,
+    "pair_precision": 0.95496,
+    "pair_recall": 0.89841,
+    "n_s1": 88171,
+    "t": 0.7,
+    "t_empty": 0.7,
+    "empty_rate": 0.05284,
+    "mean_pred_per_s1": 3.25863
+   }
+  },
+  "tuned_halfA": {
+   "t": 0.9,
+   "t_empty": 0.92,
+   "halfA_f05": 0.93401
+  },
+  "tuned_eval": {
+   "A": {
+    "macro_f05": 0.93401,
+    "nonsingleton_f05": 0.93468,
+    "singleton_acc": 0.92281,
+    "pair_precision": 0.98311,
+    "pair_recall": 0.86876,
+    "n_s1": 88466,
+    "t": 0.9,
+    "t_empty": 0.92,
+    "empty_rate": 0.06908,
+    "mean_pred_per_s1": 3.05904
+   },
+   "B": {
+    "macro_f05": 0.93429,
+    "nonsingleton_f05": 0.93542,
+    "singleton_acc": 0.91526,
+    "pair_precision": 0.98273,
+    "pair_recall": 0.87013,
+    "n_s1": 88171,
+    "t": 0.9,
+    "t_empty": 0.92,
+    "empty_rate": 0.06806,
+    "mean_pred_per_s1": 3.06688
+   }
+  },
+  "breakdown": {
+   "country=India": {
+    "locked": {
+     "A": {
+      "macro_f05": 0.91936,
+      "nonsingleton_f05": 0.92928,
+      "singleton_acc": 0.75187,
+      "pair_precision": 0.95556,
+      "pair_recall": 0.89721,
+      "n_s1": 88466,
+      "t": 0.7,
+      "t_empty": 0.7,
+      "empty_rate": 0.05382,
+      "mean_pred_per_s1": 3.25032
+     },
+     "B": {
+      "macro_f05": 0.91933,
+      "nonsingleton_f05": 0.9298,
+      "singleton_acc": 0.74213,
+      "pair_precision": 0.95496,
+      "pair_recall": 0.89841,
+      "n_s1": 88171,
+      "t": 0.7,
+      "t_empty": 0.7,
+      "empty_rate": 0.05284,
+      "mean_pred_per_s1": 3.25863
+     }
+    },
+    "tuned": {
+     "A": {
+      "macro_f05": 0.93401,
+      "nonsingleton_f05": 0.93468,
+      "singleton_acc": 0.92281,
+      "pair_precision": 0.98311,
+      "pair_recall": 0.86876,
+      "n_s1": 88466,
+      "t": 0.9,
+      "t_empty": 0.92,
+      "empty_rate": 0.06908,
+      "mean_pred_per_s1": 3.05904
+     },
+     "B": {
+      "macro_f05": 0.93429,
+      "nonsingleton_f05": 0.93542,
+      "singleton_acc": 0.91526,
+      "pair_precision": 0.98273,
+      "pair_recall": 0.87013,
+      "n_s1": 88171,
+      "t": 0.9,
+      "t_empty": 0.92,
+      "empty_rate": 0.06806,
+      "mean_pred_per_s1": 3.06688
+     }
+    }
+   },
+   "script=Latin": {
+    "locked": {
+     "A": {
+      "macro_f05": 0.91936,
+      "nonsingleton_f05": 0.92928,
+      "singleton_acc": 0.75187,
+      "pair_precision": 0.95556,
+      "pair_recall": 0.89721,
+      "n_s1": 88466,
+      "t": 0.7,
+      "t_empty": 0.7,
+      "empty_rate": 0.05382,
+      "mean_pred_per_s1": 3.25032
+     },
+     "B": {
+      "macro_f05": 0.91933,
+      "nonsingleton_f05": 0.9298,
+      "singleton_acc": 0.74213,
+      "pair_precision": 0.95496,
+      "pair_recall": 0.89841,
+      "n_s1": 88171,
+      "t": 0.7,
+      "t_empty": 0.7,
+      "empty_rate": 0.05284,
+      "mean_pred_per_s1": 3.25863
+     }
+    },
+    "tuned": {
+     "A": {
+      "macro_f05": 0.93401,
+      "nonsingleton_f05": 0.93468,
+      "singleton_acc": 0.92281,
+      "pair_precision": 0.98311,
+      "pair_recall": 0.86876,
+      "n_s1": 88466,
+      "t": 0.9,
+      "t_empty": 0.92,
+      "empty_rate": 0.06908,
+      "mean_pred_per_s1": 3.05904
+     },
+     "B": {
+      "macro_f05": 0.93429,
+      "nonsingleton_f05": 0.93542,
+      "singleton_acc": 0.91526,
+      "pair_precision": 0.98273,
+      "pair_recall": 0.87013,
+      "n_s1": 88171,
+      "t": 0.9,
+      "t_empty": 0.92,
+      "empty_rate": 0.06806,
+      "mean_pred_per_s1": 3.06688
+     }
+    }
+   },
+   "script=Indic": {
+    "locked": {
+     "A": null,
+     "B": null
+    },
+    "tuned": {
+     "A": null,
+     "B": null
+    }
+   }
+  }
+ }
+}
